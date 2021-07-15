@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "706867914928",
+    "firebase_url": "https://navigationdrawer-d9ebc-default-rtdb.firebaseio.com",
+    "project_id": "navigationdrawer-d9ebc",
+    "storage_bucket": "navigationdrawer-d9ebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706867914928:android:494ad046ba2c2d182d3375",
+        "android_client_info": {
+          "package_name": "com.example.navigationdrawer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706867914928-qvaq30mka7ddb7h6v1v2gd1p2on26uh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUGCs4ROHLabVmtMDtlkW4zOJgM127JxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706867914928-qvaq30mka7ddb7h6v1v2gd1p2on26uh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
