@@ -2,12 +2,25 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="#fff88f">
-    <TextView
-        android:textSize="50sp"
-        android:gravity="center"
-        android:text="News Fragment"
+    android:background="@color/light_white">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:id="@+id/body_container">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:elevation="20dp"
+            app:menu="@menu/item_menu"
+            android:background="@drawable/round_conner"
+            app:itemRippleColor="@android:color/transparent"
+            app:itemIconSize="30dp"
+            app:labelVisibilityMode="unlabeled"
+            android:id="@+id/bottomNav"
+            />
+    </RelativeLayout>
 </FrameLayout>

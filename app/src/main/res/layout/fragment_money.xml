@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/yellow"
-    tools:context=".fragment.KhoanThu_ThuFragment">
+    tools:context=".fragment.MoneyFragment"
+    android:background="@color/dark">
 
+    <!-- TODO: Update money fragment layout -->
     <TextView
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="50dp"
-        android:text="KhoanThu"
-        />
+        android:text="Money" />
+
 </FrameLayout>
