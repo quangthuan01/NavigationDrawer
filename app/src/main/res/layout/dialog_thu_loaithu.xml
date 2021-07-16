@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@drawable/background_dialog_chi_loaichi"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_textview_dialog_loaichi"
+        android:padding="12dp"
+        android:text="Add Type of Thu"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="12dp"
+            android:text="Please enter your expenses!"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/inputTextLoaiThu_DiaLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_edittext_dialog_chi_loaichi"
+            android:hint="Enter expenses!"
+            android:padding="12dp"
+            android:textColor="@color/blue" />
+        <TextView
+            android:id="@+id/textDateLoaiThu_DiaLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_edittext_dialog_chi_loaichi"
+            android:hint="Choose a date!"
+            android:drawableEnd="@drawable/ic_time"
+            android:padding="12dp"
+            android:textColor="@color/blue" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Cancel_Dialog_LoaiThu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:alpha="0.8"
+                android:background="@drawable/background_cancel_dialog_loaichi"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_Save_Dialog_LoaiThu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/background_save_dialog_loaichi"
+                android:backgroundTint="@null"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
