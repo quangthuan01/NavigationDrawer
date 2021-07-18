@@ -30,13 +30,18 @@ import android.widget.Toast;
 
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.adapter.KhoanChiAdapter;
+import com.example.navigationdrawer.adapter.SpinnerAdapterKhoanThu;
 import com.example.navigationdrawer.adapter.SpinnerKhoanChiAdapter;
 import com.example.navigationdrawer.model.KhoanChi;
+import com.example.navigationdrawer.model.KhoanThu;
 import com.example.navigationdrawer.model.LoaiChi;
+import com.example.navigationdrawer.model.LoaiThu;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,10 +65,7 @@ public class KhoanChi_ChiFragment extends Fragment {
     private LoaiChi loaiChiModel;
     private SpinnerKhoanChiAdapter spinnerKhoanChiAdapter;
     private ListView listViewKhoanChi;
-    private Spinner spinnerKhoanChi;
-    private TextView textDateKhoanChi;
-    private AutoCompleteTextView inputMoneyKhoanChi;
-    private Button btn_SaveAmounts;
+    private FloatingActionButton fabKhoanChi;
     private DatabaseReference databaseReference;
     private String select;
     private Notification_DiaLog notificationDiaLog;
@@ -77,23 +79,20 @@ public class KhoanChi_ChiFragment extends Fragment {
         loaiChiList = new ArrayList<>();
         notificationDiaLog = new Notification_DiaLog(getActivity());
         listViewKhoanChi = view.findViewById(R.id.listViewKhoanChi);
-        spinnerKhoanChi = view.findViewById(R.id.spinnerKhoanChi);
-        textDateKhoanChi = view.findViewById(R.id.textClickDate);
-        inputMoneyKhoanChi = view.findViewById(R.id.autoCompleteTextView);
-        btn_SaveAmounts = view.findViewById(R.id.btn_saveKhoanChi);
+        fabKhoanChi = view.findViewById(R.id.fabKhoanChi);
         loaiChiModel = new LoaiChi();
         //khoi tao bang tren firebase
         databaseReference = FirebaseDatabase.getInstance().getReference().child("KhoanChi");
         //getDataBase
         getAllDataFireBase();
-        //showSpinner
-        spinnerKhoanChi();
-        //click spinner
-        selectSpinner();
-        //chon date
-        chonDate();
         //insert
-        insertKhoanChi();
+        fabKhoanChi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertKhoanChi(Gravity.TOP);
+            }
+        });
+
         //setOnItem
         setOnItemClick();
 
@@ -111,12 +110,14 @@ public class KhoanChi_ChiFragment extends Fragment {
                 dialog.setContentView(R.layout.dialog_update_chi_khoanchi);
 
                 AutoCompleteTextView inputMoney = (AutoCompleteTextView) dialog.findViewById(R.id.input_Update_Text_KhoanChi_DiaLog);
+                AutoCompleteTextView inputOldTitle = (AutoCompleteTextView) dialog.findViewById(R.id.input_Update_OldTitle_KhoanChi_DiaLog);
                 TextView textDate = (TextView) dialog.findViewById(R.id.text_Update_Date_KhoanChi_DiaLog);
                 ImageView imageClose = (ImageView) dialog.findViewById(R.id.image_close_KhoanChi);
                 TextView textSpn = (TextView)dialog.findViewById(R.id.textspinnerUpdateKhoanChi);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog__KhoanChi);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog__KhoanChi);
 
+                inputOldTitle.setText(khoanChiModel.getOldKhoanChi());
                 inputMoney.setText(khoanChiModel.getMoneyKhoanChi());
                 textDate.setText(khoanChiModel.getDateKhoanChi());
                 textSpn.setText(khoanChiModel.getTitleKhoanChi());
@@ -150,7 +151,8 @@ public class KhoanChi_ChiFragment extends Fragment {
                         String _money = inputMoney.getText().toString();
                         String _textdate = textDate.getText().toString();
                         String _title = textSpn.getText().toString();
-                        upDateData(_id,_title,_money,_textdate);
+                        String _oldtitle = inputOldTitle.getText().toString();
+                        upDateData(_id,_title,_oldtitle,_money,_textdate);
                         dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
@@ -184,60 +186,37 @@ public class KhoanChi_ChiFragment extends Fragment {
         });
     }
 
-    private void upDateData(String idKhoanChi, String title, String money, String date) {
+    private void upDateData(String idKhoanChi, String title,String oldtitle, String money, String date) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanChi").child(idKhoanChi);
-        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title, money, date);
+        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title,oldtitle, money, date);
         Dbref.setValue(khoanChi);
     }
 
-    private void insertKhoanChi() {
-        btn_SaveAmounts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String id = UUID.randomUUID().toString();
-                String title = select;
-                String money = inputMoneyKhoanChi.getText().toString();
-                String date = textDateKhoanChi.getText().toString();
-                if (money.isEmpty()) {
-                    inputMoneyKhoanChi.requestFocus();
-                    notificationDiaLog.showWarning(Gravity.CENTER);
-                    return;
-                } else if (date.isEmpty()) {
-                    textDateKhoanChi.requestFocus();
-                    notificationDiaLog.showWarning(Gravity.CENTER);
-                    return;
-                } else {
-                    KhoanChi khoanChi = new KhoanChi(id, title, money, date);
-                    databaseReference.child(khoanChi.getIdKhoanChi()).setValue(khoanChi);
-                    notificationDiaLog.showSuccessful(Gravity.CENTER);
-                    inputMoneyKhoanChi.setText("");
-                    textDateKhoanChi.setText("");
-                }
-            }
-        });
-    }
+    private void insertKhoanChi(int gravity) {
 
-    private void chonDate() {
-        textDateKhoanChi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int ngay = calendar.get(Calendar.DAY_OF_MONTH);
-                int thang = calendar.get(Calendar.MONTH);
-                int nam = calendar.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                textDateKhoanChi.setText(dayOfMonth + "-" + month + "-" + year);
-                            }
-                        }, nam, thang, ngay);
-                datePickerDialog.show();
-            }
-        });
-    }
-
-    private void spinnerKhoanChi() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_bottom_sheet_khoanchi);
+        Window window = dialog.getWindow();
+        //check
+        if (window == null) {
+            return;
+        }
+        // xu ly vi tri dia log center
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.gravity = gravity;
+        window.setAttributes(layoutParams);
+        //check
+        dialog.setCancelable(false);
+        TextInputEditText textTitle = (TextInputEditText) dialog.findViewById(R.id.inputTitleKhoanChi);
+        TextInputEditText textMoney = (TextInputEditText) dialog.findViewById(R.id.inputMoneyKhoanChi);
+        TextView dateKhoanChi = (TextView) dialog.findViewById(R.id.textDateKhoanChi);
+        Spinner spinnerKhoanChi = (Spinner) dialog.findViewById(R.id.spnKhoanChi);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancelKhoanChi);
+        Button btn_save = (Button) dialog.findViewById(R.id.btn_saveKhoanChi);
+        //get data ->> spinner
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("LoaiChi");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -256,9 +235,7 @@ public class KhoanChi_ChiFragment extends Fragment {
 
             }
         });
-    }
-
-    private void selectSpinner() {
+        //set onClick spinner
         spinnerKhoanChi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -267,11 +244,69 @@ public class KhoanChi_ChiFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+        //onClick datetime
+        dateKhoanChi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int ngay = calendar.get(Calendar.DAY_OF_MONTH);
+                int thang = calendar.get(Calendar.MONTH);
+                int nam = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                dateKhoanChi.setText(dayOfMonth + "-" + month + "-" + year);
+                            }
+                        }, nam, thang, ngay);
+                datePickerDialog.show();
+
+            }
+        });
+        //close dialog
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //save data
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String _idKhoanChi = UUID.randomUUID().toString();
+                String _spn = select;
+                String _title = textTitle.getText().toString();
+                String _money = textMoney.getText().toString();
+                String _date = dateKhoanChi.getText().toString();
+                if (_title.isEmpty()) {
+                    notificationDiaLog.showWarning(Gravity.CENTER);
+                    textTitle.requestFocus();
+                    return;
+                } else if (_money.isEmpty()) {
+                    notificationDiaLog.showError(Gravity.CENTER);
+                    textMoney.requestFocus();
+                    return;
+                } else if (_date.isEmpty()) {
+                    notificationDiaLog.showWarning(Gravity.CENTER);
+                    dateKhoanChi.requestFocus();
+                    return;
+                } else {
+                    khoanChiModel = new KhoanChi(_idKhoanChi,_spn, _title, _money, _date);
+                    databaseReference.child(khoanChiModel.getIdKhoanChi()).setValue(khoanChiModel);
+                    notificationDiaLog.showSuccessful(Gravity.CENTER);
+                    dialog.dismiss();
+                }
+            }
+        });
+        dialog.show();
     }
 
     private void getAllDataFireBase() {
+        //orderByChild ("idUser"). equalTo ("02")
         // get data to fire ->> app
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

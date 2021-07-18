@@ -3,15 +3,17 @@ package com.example.navigationdrawer.model;
 public class KhoanChi {
     private String idKhoanChi;
     private String titleKhoanChi;
+    private String oldKhoanChi;
     private String moneyKhoanChi;
     private String dateKhoanChi;
 
     public KhoanChi() {
     }
 
-    public KhoanChi(String idKhoanChi, String titleKhoanChi, String moneyKhoanChi, String dateKhoanChi) {
+    public KhoanChi(String idKhoanChi, String titleKhoanChi, String oldKhoanChi, String moneyKhoanChi, String dateKhoanChi) {
         this.idKhoanChi = idKhoanChi;
         this.titleKhoanChi = titleKhoanChi;
+        this.oldKhoanChi = oldKhoanChi;
         this.moneyKhoanChi = moneyKhoanChi;
         this.dateKhoanChi = dateKhoanChi;
     }
@@ -30,6 +32,14 @@ public class KhoanChi {
 
     public void setTitleKhoanChi(String titleKhoanChi) {
         this.titleKhoanChi = titleKhoanChi;
+    }
+
+    public String getOldKhoanChi() {
+        return oldKhoanChi;
+    }
+
+    public void setOldKhoanChi(String oldKhoanChi) {
+        this.oldKhoanChi = oldKhoanChi;
     }
 
     public String getMoneyKhoanChi() {

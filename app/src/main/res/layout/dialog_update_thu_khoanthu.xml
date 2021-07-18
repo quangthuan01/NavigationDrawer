@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
     android:background="@drawable/background_dialog_chi_loaichi"
     android:orientation="vertical">
 
@@ -24,7 +25,7 @@
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintStart_toStartOf="parent"/>
          <ImageView
-             android:id="@+id/image_close_KhoanChi"
+             android:id="@+id/image_close_Khoanthu"
              android:layout_width="30dp"
              android:layout_height="30dp"
              app:tint="@color/white"
@@ -34,7 +35,6 @@
              app:layout_constraintTop_toTopOf="@id/textUpdate"
              app:layout_constraintBottom_toBottomOf="@id/textUpdate"/>
      </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,42 +51,48 @@
             android:textAlignment="center"
             android:textColor="@color/blue"
             android:textSize="14sp" />
+
         <TextView
-            android:layout_marginTop="16dp"
-            android:background="@drawable/background_edittext_dialog_chi_loaichi"
-            android:id="@+id/textspinnerUpdateKhoanChi"
+            android:id="@+id/text_Update_SpnKhoanThu_DiaLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"/>
-        <AutoCompleteTextView
-            android:id="@+id/input_Update_OldTitle_KhoanChi_DiaLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/background_edittext_dialog_chi_loaichi"
-            android:hint="Old Title!"
+            android:hint="Choose a date!"
             android:padding="12dp"
-            android:textColor="@color/blue" />
-        <AutoCompleteTextView
-            android:id="@+id/input_Update_Text_KhoanChi_DiaLog"
+            android:textColor="@color/dark" />
+
+        <EditText
+            android:id="@+id/input_Update_TypysKhoanThu_DiaLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:inputType="number"
             android:background="@drawable/background_edittext_dialog_chi_loaichi"
             android:hint="Enter expenses!"
             android:padding="12dp"
-            android:textColor="@color/blue" />
-        <TextView
-            android:id="@+id/text_Update_Date_KhoanChi_DiaLog"
+            android:textColor="@color/dark" />
+
+        <EditText
+            android:id="@+id/input_Update_MoneyKhoanThu_DiaLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/background_edittext_dialog_chi_loaichi"
-            android:hint="Choose a date!"
-            android:drawableEnd="@drawable/ic_time"
+            android:hint="Enter expenses!"
+            android:inputType="number"
             android:padding="12dp"
-            android:textColor="@color/blue" />
+            android:textColor="@color/dark" />
+
+        <TextView
+            android:id="@+id/text_Update_DateKhoanThu_DiaLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_edittext_dialog_chi_loaichi"
+            android:drawableEnd="@drawable/ic_time"
+            android:hint="Choose a date!"
+            android:padding="12dp"
+            android:textColor="@color/dark" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -94,7 +100,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_Update_Dialog__KhoanChi"
+                android:id="@+id/btn_Update_Dialog_KhoanThu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -107,7 +113,7 @@
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_Delete_Dialog__KhoanChi"
+                android:id="@+id/btn_Delete_Dialog_KhoanThu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

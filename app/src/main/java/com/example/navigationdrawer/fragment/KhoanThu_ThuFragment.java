@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -31,9 +32,11 @@ import com.example.navigationdrawer.adapter.SpinnerAdapterKhoanThu;
 import com.example.navigationdrawer.model.KhoanThu;
 import com.example.navigationdrawer.model.LoaiChi;
 import com.example.navigationdrawer.model.LoaiThu;
+import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,7 +71,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         //Assign varible
         fabKhoanThu = view.findViewById(R.id.fabKhoanThu);
         recyclerViewKhoanThu = view.findViewById(R.id.recyclerViewKhoanThu);
-        recyclerViewKhoanThu.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        recyclerViewKhoanThu.setLayoutManager(new LinearLayoutManager(getActivity()));
         notificationDiaLog = new Notification_DiaLog(getActivity());
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
@@ -118,7 +121,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancelKhoanThu);
         Button btn_save = (Button) dialog.findViewById(R.id.btn_saveKhoanThu);
 
-
+        //getdata firebase ->> spinner
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("LoaiThu");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -207,6 +210,19 @@ public class KhoanThu_ThuFragment extends Fragment {
     }
     private void getDataFireBase(){
         // get data to fire ->> app
+//        User user = new User();
+//        DbRef.orderByChild("email").equalTo(user.getEmail()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull  DatabaseError error) {
+//
+//            }
+//        });
+//        //-------------------------
         DbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

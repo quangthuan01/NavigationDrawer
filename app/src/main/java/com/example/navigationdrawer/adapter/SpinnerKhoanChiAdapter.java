@@ -19,17 +19,17 @@ public class SpinnerKhoanChiAdapter extends BaseAdapter {
         this.data = data;
         this.context = context;
     }
-    public  int getPosition(String IdKhoanChi) {
-        int index  = -1;
-        for (int i  = 0; i<data.size(); i++){
-            LoaiChi loaiChi = data.get(i);
-            if (loaiChi.getIdLoaiChi().equals(IdKhoanChi)){
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
+//    public  int getPosition(String IdKhoanChi) {
+//        int index  = -1;
+//        for (int i  = 0; i<data.size(); i++){
+//            LoaiChi loaiChi = data.get(i);
+//            if (loaiChi.getIdLoaiChi().equals(IdKhoanChi)){
+//                index = i;
+//                break;
+//            }
+//        }
+//        return index;
+//    }
 
     @Override
     public int getCount() {
@@ -49,18 +49,17 @@ public class SpinnerKhoanChiAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        view = View.inflate(parent.getContext(),R.layout.spinner_item_khoanchi,null);
+        view = View.inflate(parent.getContext(), R.layout.spinner_item_khoanchi, null);
         TextView textViewSpn = view.findViewById(R.id.spinner_adapter);
-        ViewHolder viewHolder = new ViewHolder(textViewSpn);
-        view.setTag(viewHolder);
-        LoaiChi loaiChi = new LoaiChi();
+
+        LoaiChi loaiChi = (LoaiChi) getItem(position);
         textViewSpn.setText(loaiChi.getTitleLoaiChi());
         return view;
     }
-    public static class ViewHolder{
-        final TextView textSpinner;
-        ViewHolder (TextView _textSpinner){
-            textSpinner = _textSpinner;
-        }
-    }
+//    public static class ViewHolder{
+//        final TextView textSpinner;
+//        ViewHolder (TextView _textSpinner){
+//            textSpinner = _textSpinner;
+//        }
+//    }
 }

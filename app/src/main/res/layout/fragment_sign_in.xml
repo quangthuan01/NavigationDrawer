@@ -19,7 +19,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:endIconMode="clear_text"
-            app:helperText="Required*"
             android:hint="Email"
             app:helperTextTextColor="@color/dark"
             app:startIconDrawable="@drawable/custom_focus_email">
@@ -41,12 +40,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            app:counterEnabled="true"
             android:hint="Password"
-            app:counterMaxLength="20"
             app:endIconMode="password_toggle"
-            app:helperText="Required*"
-            app:helperTextTextColor="@android:color/holo_red_dark"
             app:startIconDrawable="@drawable/custom_focus_lock">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:inputType="textPassword"
-                android:maxLength="21"
                 android:textColor="@color/dark" />
         </com.google.android.material.textfield.TextInputLayout>
 

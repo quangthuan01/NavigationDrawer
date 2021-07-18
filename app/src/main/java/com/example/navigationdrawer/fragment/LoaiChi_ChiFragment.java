@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.adapter.LoaiChiAdapter;
 import com.example.navigationdrawer.model.LoaiChi;
+import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -57,6 +58,8 @@ public class LoaiChi_ChiFragment extends Fragment {
     private DatabaseReference DbRef;
     private List<LoaiChi> loaiChiList;
     private LoaiChiAdapter loaiChiAdapter;
+    private User userModel;
+    private List<User> userList;
 
     @Nullable
     @Override
@@ -67,9 +70,11 @@ public class LoaiChi_ChiFragment extends Fragment {
         navigationView.setBackground(null);
         floatingActionButton = view.findViewById(R.id.fabLoaiChi);
         listView = view.findViewById(R.id.listViewLoaiChi);
+        userModel = new User();
         notificationDiaLog= new Notification_DiaLog(getActivity());
         loaiChiList  = new ArrayList<>();
-
+        userList = new ArrayList<>();
+        getDataUser();
         DbRef = FirebaseDatabase.getInstance().getReference().child("LoaiChi");
         //lay du lieu tu tren firebase ve app
         getDataFireBase();
@@ -128,7 +133,8 @@ public class LoaiChi_ChiFragment extends Fragment {
                     public void onClick(View v) {
                         String  _title = inputUpdateLoaiChi.getText().toString();
                         String _date = dateUpdateLoaiChi.getText().toString();
-                        upDateData(_idLoaiChi,_title,_date);
+                        String _emailUser = userModel.getEmail();
+                        upDateData(_idLoaiChi,_title,_date,_emailUser);
                         dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
@@ -164,9 +170,9 @@ public class LoaiChi_ChiFragment extends Fragment {
         });
     }
 
-    private void upDateData(String _id, String _title, String _date) {
+    private void upDateData(String _id, String _title, String _date, String _emailUserLoaiChi) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("LoaiChi").child(_id);
-        LoaiChi loaiChi = new LoaiChi(_id,_title,_date);
+        LoaiChi loaiChi = new LoaiChi(_id,_title,_date,_emailUserLoaiChi);
         Dbref.setValue(loaiChi);
     }
 
@@ -223,10 +229,11 @@ public class LoaiChi_ChiFragment extends Fragment {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userModel = new User();
                 String _idloaichi = UUID.randomUUID().toString();
                 String  _title  = textLoaiChi.getText().toString();
                 String  _date = dateLoaiChi.getText().toString();
-                    loaiChiModel = new LoaiChi(_idloaichi,_title,_date);
+                String _emailUser = userModel.getEmail();
                 if (_title.isEmpty()){
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textLoaiChi.requestFocus();
@@ -236,8 +243,8 @@ public class LoaiChi_ChiFragment extends Fragment {
                     dateLoaiChi.requestFocus();
                     return;
                 }else {
-                    LoaiChi loaiChi_Model = new LoaiChi(_idloaichi, _title, _date);
-                    DbRef.child(loaiChi_Model.getIdLoaiChi()).setValue(loaiChi_Model);
+                    loaiChiModel = new LoaiChi(_idloaichi,_title,_date,_emailUser);
+                    DbRef.child(loaiChiModel.getIdLoaiChi()).setValue(loaiChiModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
                 }
@@ -246,9 +253,9 @@ public class LoaiChi_ChiFragment extends Fragment {
         dialog.show();
 
     }
-    private void getDataFireBase(){
+    private void getDataFireBase() {
         // get data to fire ->> app
-        DbRef.addValueEventListener(new ValueEventListener() {
+        DbRef.orderByChild("email").equalTo(userModel.getEmail()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 loaiChiList.clear();
@@ -256,7 +263,7 @@ public class LoaiChi_ChiFragment extends Fragment {
                     LoaiChi loaiChi = LoaiChiDatasnaps.getValue(LoaiChi.class);
                     loaiChiList.add(loaiChi);
                 }
-                loaiChiAdapter = new LoaiChiAdapter(loaiChiList,getActivity());
+                loaiChiAdapter = new LoaiChiAdapter(loaiChiList, getActivity());
                 listView.setAdapter(loaiChiAdapter);
             }
 
@@ -266,5 +273,41 @@ public class LoaiChi_ChiFragment extends Fragment {
             }
         });
     }
+    private void getDataUser(){
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users").child("email");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot UserDataSnapshot : snapshot.getChildren()){
+                    userModel = UserDataSnapshot.getValue(User.class);
+                    userList.add(userModel);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+    }
+
+//        DbRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                loaiChiList.clear();
+//                for (DataSnapshot LoaiChiDatasnaps : snapshot.getChildren()) {
+//                    LoaiChi loaiChi = LoaiChiDatasnaps.getValue(LoaiChi.class);
+//                    loaiChiList.add(loaiChi);
+//                }
+//                loaiChiAdapter = new LoaiChiAdapter(loaiChiList,getActivity());
+//                listView.setAdapter(loaiChiAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 }

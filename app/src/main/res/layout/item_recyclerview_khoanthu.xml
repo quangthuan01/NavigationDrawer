@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:id="@+id/layout_container_item_khoanthu_recyclerView"
     android:background="@drawable/background_save_dialog_loaichi"
     android:orientation="vertical">
 
@@ -19,7 +21,7 @@
             android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Types"
+            android:text="Category"
             android:textColor="@color/bluesky"
             android:textSize="16sp" />
 
@@ -47,7 +49,7 @@
             android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Detail"
+            android:text="Types"
             android:textColor="@color/bluesky"
             android:textSize="16sp" />
 

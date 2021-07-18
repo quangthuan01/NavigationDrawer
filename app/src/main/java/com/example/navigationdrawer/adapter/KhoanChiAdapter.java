@@ -56,9 +56,11 @@ public class KhoanChiAdapter extends BaseAdapter {
         TextView title = (TextView) view.findViewById(R.id.item_TheLoaiKhoanChi);
         TextView moNey = (TextView) view.findViewById(R.id.item_textSoTienChi);
         TextView datetime = (TextView) view.findViewById(R.id.item_textDateKhoanChi);
+        TextView oldtitle = (TextView) view.findViewById(R.id.item_OldTheLoaiKhoanChi);
 
         title.setText(khoanChi.getTitleKhoanChi());
-        moNey.setText(khoanChi.getMoneyKhoanChi());
+        oldtitle.setText(khoanChi.getOldKhoanChi());
+        moNey.setText(khoanChi.getMoneyKhoanChi() + "VND");
         datetime.setText(khoanChi.getDateKhoanChi());
         return view;
     }

@@ -29,13 +29,14 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class SignUpFragment extends Fragment {
 
-    private TextInputEditText inputName,inputEmail,inputPassword,inputPhone;
+    private TextInputEditText inputName, inputEmail, inputPassword, inputPhone;
     private Button signUp;
     private FirebaseAuth mAuth;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_sign_up,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         inputName = view.findViewById(R.id.EditTextInputName_signup);
         inputEmail = view.findViewById(R.id.EditTextInputEmail_signup);
@@ -112,6 +113,7 @@ public class SignUpFragment extends Fragment {
 
         return view;
     }
+
     private void resetFromdata() {
         inputName.setText("");
         inputName.requestFocus();
@@ -119,6 +121,63 @@ public class SignUpFragment extends Fragment {
         inputPassword.setText("");
         inputPhone.setText("");
 
+    }
+
+    private Boolean validateName() {
+        String val = inputName.getText().toString();
+        if (val.isEmpty()) {
+            inputName.setError("Field cannot be empty");
+            return false;
+        } else {
+            inputName.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validateEmail() {
+        String val = inputEmail.getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if (val.isEmpty()) {
+            inputEmail.setError("Field cannot be empty");
+            return false;
+        } else if (!val.matches(emailPattern)) {
+            inputEmail.setError("Invalid email address");
+            return false;
+        } else {
+            inputEmail.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validatePhone() {
+        String val = inputPhone.getText().toString();
+        if (val.isEmpty()) {
+            inputPhone.setError("Field cannot be empty");
+            return false;
+        } else {
+            inputPhone.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validatePassword() {
+        String val = inputPassword.getText().toString();
+        String passwordVal = "^"+
+                "(?=.*[a-zA-Z])"+ //any letter
+                "(?=.*[@#$%^&+=])"+ //at least 1 special character
+                "(?=\\S+$)"+//no white spaces
+                ".{4,}"+    //at least 4 characters
+                "$";
+        if (val.isEmpty()) {
+            inputPassword.setError("Field cannot be empty");
+            return false;
+        }else  if (!val.matches(passwordVal)){
+                inputPassword.setError("Password is too weak");
+                return false;
+        }else {
+            inputPassword.setError(null);
+            return true;
+        }
     }
 
 }

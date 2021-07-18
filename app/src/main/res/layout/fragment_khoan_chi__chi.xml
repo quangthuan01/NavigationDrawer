@@ -5,83 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.KhoanChi_ChiFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ListView
+        android:id="@+id/listViewKhoanChi"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:divider="@color/dark"
+        android:dividerHeight="1dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_dialog_chi_loaichi" >
+    </ListView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabKhoanChi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="30dp"
+        android:src="@drawable/ic_add"
+        />
 
-        <Spinner
-            android:id="@+id/spinnerKhoanChi"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01" />
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/background_spinner_khoanchi"
-            android:hint="Spending Amounts ?"
-            android:inputType="number"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerKhoanChi"
-            app:layout_constraintVertical_bias="0" />
-
-        <TextView
-            android:id="@+id/textClickDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/background_spinner_khoanchi"
-            android:drawableRight="@drawable/ic_time"
-            android:hint="Choose a date !"
-            android:padding="10dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView"
-            app:layout_constraintVertical_bias="0" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_saveKhoanChi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/background_save_dialog_loaichi"
-            android:text="Save Spending Amounts"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textClickDate"
-            app:layout_constraintVertical_bias="0" />
-
-        <ListView
-            android:id="@+id/listViewKhoanChi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/background_dialog_chi_loaichi"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_saveKhoanChi" />
-    </LinearLayout>
-
+</RelativeLayout>
 </FrameLayout>
