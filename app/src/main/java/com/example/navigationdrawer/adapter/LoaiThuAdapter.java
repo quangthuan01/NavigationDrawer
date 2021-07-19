@@ -27,6 +27,8 @@ import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -53,6 +55,8 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull  LoaiThuAdapter.MyViewHolder holder, int position) {
         LoaiThu loaiThu = data.get(position);
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        String idUser= firebaseUser.getUid();
         //set data
         holder.titleLoaithu.setText(loaiThu.getTitleLoaiThu());
         holder.dateLoaithu.setText(loaiThu.getDateLoaiThu());
@@ -108,7 +112,7 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
                     public void onClick(View v) {
                         String _title = inputTitle.getText().toString();
                         String _textdate = textDate.getText().toString();
-                        upDateData(_id,_title,_textdate);
+                        upDateData(_id,_title,_textdate,idUser);
                         dialog.dismiss();
                         Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
@@ -146,9 +150,9 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
         });
     }
 
-    private void upDateData(String idLoaiThu, String title, String date) {
+    private void upDateData(String idLoaiThu, String title, String date, String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("LoaiThu").child(idLoaiThu);
-        LoaiThu loaiThu = new LoaiThu(idLoaiThu, title, date);
+        LoaiThu loaiThu = new LoaiThu(idLoaiThu, title, date,idUser);
         Dbref.setValue(loaiThu);
     }
 

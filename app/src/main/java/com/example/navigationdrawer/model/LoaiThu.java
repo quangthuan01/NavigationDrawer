@@ -4,11 +4,13 @@ public class LoaiThu {
     private String idLoaiThu;
     private String titleLoaiThu;
     private String dateLoaiThu;
+    private String idUserLoaiThu;
 
-    public LoaiThu(String idLoaiThu, String titleLoaiThu, String dateLoaiThu) {
+    public LoaiThu(String idLoaiThu, String titleLoaiThu, String dateLoaiThu, String idUserLoaiThu) {
         this.idLoaiThu = idLoaiThu;
         this.titleLoaiThu = titleLoaiThu;
         this.dateLoaiThu = dateLoaiThu;
+        this.idUserLoaiThu = idUserLoaiThu;
     }
 
     public LoaiThu() {
@@ -36,5 +38,13 @@ public class LoaiThu {
 
     public void setDateLoaiThu(String dateLoaiThu) {
         this.dateLoaiThu = dateLoaiThu;
+    }
+
+    public String getIdUserLoaiThu() {
+        return idUserLoaiThu;
+    }
+
+    public void setIdUserLoaiThu(String idUserLoaiThu) {
+        this.idUserLoaiThu = idUserLoaiThu;
     }
 }

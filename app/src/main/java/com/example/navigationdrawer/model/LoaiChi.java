@@ -4,16 +4,16 @@ public class LoaiChi {
    private String idLoaiChi;
    private String titleLoaiChi;
    private String dateLoaiChi;
-   private String emailUserLoaiChi;
+   private String idUserLoaiChi;
 
     public LoaiChi() {
     }
 
-    public LoaiChi(String idLoaiChi, String titleLoaiChi, String dateLoaiChi, String emailUserLoaiChi) {
+    public LoaiChi(String idLoaiChi, String titleLoaiChi, String dateLoaiChi, String idUserLoaiChi) {
         this.idLoaiChi = idLoaiChi;
         this.titleLoaiChi = titleLoaiChi;
         this.dateLoaiChi = dateLoaiChi;
-        this.emailUserLoaiChi = emailUserLoaiChi;
+        this.idUserLoaiChi = idUserLoaiChi;
     }
 
     public String getIdLoaiChi() {
@@ -40,11 +40,11 @@ public class LoaiChi {
         this.dateLoaiChi = dateLoaiChi;
     }
 
-    public String getEmailUserLoaiChi() {
-        return emailUserLoaiChi;
+    public String getIdUserLoaiChi() {
+        return idUserLoaiChi;
     }
 
-    public void setEmailUserLoaiChi(String emailUserLoaiChi) {
-        this.emailUserLoaiChi = emailUserLoaiChi;
+    public void setIdUserLoaiChi(String idUserLoaiChi) {
+        this.idUserLoaiChi = idUserLoaiChi;
     }
 }

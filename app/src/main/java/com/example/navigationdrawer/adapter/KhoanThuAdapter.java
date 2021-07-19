@@ -17,19 +17,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.model.KhoanThu;
-import com.example.navigationdrawer.model.LoaiThu;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -55,6 +54,8 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
     public void onBindViewHolder(@NonNull  KhoanThuAdapter.MyViewHolder holder, int position) {
         //set du lieu len recyclerview
         KhoanThu khoanThu =data.get(position);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String idUser = firebaseUser.getUid();
         holder.inputTitle.setText(khoanThu.getTitleKhoanThu());
         holder.textDetail.setText(khoanThu.getOldTitle());
         holder.inputMoney.setText(khoanThu.getMoneyKhoanThu() + "VND");
@@ -125,7 +126,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                         String _types = inputTypes.getText().toString();
                         String _money = inputMoney.getText().toString();
                         String _textdate = textDate.getText().toString();
-                        upDateData(_id,_title,_types,_money,_textdate);
+                        upDateData(_id,_title,_types,_money,_textdate,idUser);
                         dialog.dismiss();
                         Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
@@ -163,9 +164,9 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
         });
     }
 
-    private void upDateData(String idKhoanThu, String title,String types,String money, String date) {
+    private void upDateData(String idKhoanThu, String title,String types,String money, String date,String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanThu").child(idKhoanThu);
-        KhoanThu khoanThu = new KhoanThu(idKhoanThu, title,types,money, date);
+        KhoanThu khoanThu = new KhoanThu(idKhoanThu, title,types,money, date,idUser);
         Dbref.setValue(khoanThu);
     }
 

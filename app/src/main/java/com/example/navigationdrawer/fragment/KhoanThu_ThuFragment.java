@@ -36,6 +36,8 @@ import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,6 +66,8 @@ public class KhoanThu_ThuFragment extends Fragment {
     private SpinnerAdapterKhoanThu spinnerAdapterKhoanThu;
     private DatabaseReference DbRef;
     private String select;
+    private FirebaseUser firebaseUser;
+    private String idUser;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,6 +76,11 @@ public class KhoanThu_ThuFragment extends Fragment {
         fabKhoanThu = view.findViewById(R.id.fabKhoanThu);
         recyclerViewKhoanThu = view.findViewById(R.id.recyclerViewKhoanThu);
         recyclerViewKhoanThu.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //get userID
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        idUser = firebaseUser.getUid();
+
         notificationDiaLog = new Notification_DiaLog(getActivity());
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
@@ -198,7 +207,7 @@ public class KhoanThu_ThuFragment extends Fragment {
                     dateKhoanThu.requestFocus();
                     return;
                 } else {
-                    khoanThuModel = new KhoanThu(_idKhoanThu,_spn, _title, _money, _date);
+                    khoanThuModel = new KhoanThu(_idKhoanThu,_spn, _title, _money, _date,idUser);
                     DbRef.child(khoanThuModel.getIdKhoanThu()).setValue(khoanThuModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
@@ -210,20 +219,9 @@ public class KhoanThu_ThuFragment extends Fragment {
     }
     private void getDataFireBase(){
         // get data to fire ->> app
-//        User user = new User();
-//        DbRef.orderByChild("email").equalTo(user.getEmail()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull  DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull  DatabaseError error) {
-//
-//            }
-//        });
-//        //-------------------------
-        DbRef.addValueEventListener(new ValueEventListener() {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("KhoanThu");
+        databaseReference.orderByChild("idUserKhoanThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 khoanThuList.clear();

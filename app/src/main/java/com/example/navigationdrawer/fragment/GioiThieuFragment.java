@@ -40,7 +40,7 @@ public class GioiThieuFragment extends Fragment {
         gioiThieuEiffelTower = new GioiThieu();
         gioiThieuEiffelTower.imageUrl = "https://firebasestorage.googleapis.com/v0/b/navigationdrawer-d9ebc.appspot.com/o/anhmain.jpg?alt=media&token=3e5a7b22-0c53-42d0-891e-2895d89a385d";
         gioiThieuEiffelTower.title = "Nguyen Quang Thuan";
-        gioiThieuEiffelTower.location = "Face";
+        gioiThieuEiffelTower.location = "FaceBook App Writer";
         gioiThieuEiffelTower.starRating = 4.8f;
         gioiThieus.add(gioiThieuEiffelTower);
 

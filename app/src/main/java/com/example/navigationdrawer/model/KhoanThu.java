@@ -6,16 +6,18 @@ public class KhoanThu {
     private String oldTitle;
     private String moneyKhoanThu;
     private String dateKhoanThu;
+    private String idUserKhoanThu;
 
     public KhoanThu() {
     }
 
-    public KhoanThu(String idKhoanThu, String titleKhoanThu, String oldTitle, String moneyKhoanThu, String dateKhoanThu) {
+    public KhoanThu(String idKhoanThu, String titleKhoanThu, String oldTitle, String moneyKhoanThu, String dateKhoanThu, String idUserKhoanThu) {
         this.idKhoanThu = idKhoanThu;
         this.titleKhoanThu = titleKhoanThu;
         this.oldTitle = oldTitle;
         this.moneyKhoanThu = moneyKhoanThu;
         this.dateKhoanThu = dateKhoanThu;
+        this.idUserKhoanThu = idUserKhoanThu;
     }
 
     public String getIdKhoanThu() {
@@ -56,5 +58,13 @@ public class KhoanThu {
 
     public void setDateKhoanThu(String dateKhoanThu) {
         this.dateKhoanThu = dateKhoanThu;
+    }
+
+    public String getIdUserKhoanThu() {
+        return idUserKhoanThu;
+    }
+
+    public void setIdUserKhoanThu(String idUserKhoanThu) {
+        this.idUserKhoanThu = idUserKhoanThu;
     }
 }

@@ -46,6 +46,7 @@ public class TaiKhoanFragment extends Fragment {
         textPhone = view.findViewById(R.id.textPhoneProfile);
         textFullName = view.findViewById(R.id.textFullNameProfile);
         textFull = view.findViewById(R.id.textFull);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");

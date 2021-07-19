@@ -42,6 +42,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,6 +71,8 @@ public class KhoanChi_ChiFragment extends Fragment {
     private DatabaseReference databaseReference;
     private String select;
     private Notification_DiaLog notificationDiaLog;
+    private FirebaseUser firebaseUser;
+    private String idUser;
 
     @Nullable
     @Override
@@ -77,6 +81,12 @@ public class KhoanChi_ChiFragment extends Fragment {
         //Assign varible
         khoanChiList = new ArrayList<>();
         loaiChiList = new ArrayList<>();
+
+
+        //get userID
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        idUser = firebaseUser.getUid();
+        //thong bao
         notificationDiaLog = new Notification_DiaLog(getActivity());
         listViewKhoanChi = view.findViewById(R.id.listViewKhoanChi);
         fabKhoanChi = view.findViewById(R.id.fabKhoanChi);
@@ -152,7 +162,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                         String _textdate = textDate.getText().toString();
                         String _title = textSpn.getText().toString();
                         String _oldtitle = inputOldTitle.getText().toString();
-                        upDateData(_id,_title,_oldtitle,_money,_textdate);
+                        upDateData(_id,_title,_oldtitle,_money,_textdate,idUser);
                         dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
@@ -186,9 +196,9 @@ public class KhoanChi_ChiFragment extends Fragment {
         });
     }
 
-    private void upDateData(String idKhoanChi, String title,String oldtitle, String money, String date) {
+    private void upDateData(String idKhoanChi, String title,String oldtitle, String money, String date,String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanChi").child(idKhoanChi);
-        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title,oldtitle, money, date);
+        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title,oldtitle, money, date,idUser);
         Dbref.setValue(khoanChi);
     }
 
@@ -295,7 +305,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                     dateKhoanChi.requestFocus();
                     return;
                 } else {
-                    khoanChiModel = new KhoanChi(_idKhoanChi,_spn, _title, _money, _date);
+                    khoanChiModel = new KhoanChi(_idKhoanChi,_spn, _title, _money, _date,idUser);
                     databaseReference.child(khoanChiModel.getIdKhoanChi()).setValue(khoanChiModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
@@ -308,7 +318,8 @@ public class KhoanChi_ChiFragment extends Fragment {
     private void getAllDataFireBase() {
         //orderByChild ("idUser"). equalTo ("02")
         // get data to fire ->> app
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("KhoanChi");
+        databaseReference.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 khoanChiList.clear();

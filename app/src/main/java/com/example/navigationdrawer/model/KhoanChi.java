@@ -6,16 +6,18 @@ public class KhoanChi {
     private String oldKhoanChi;
     private String moneyKhoanChi;
     private String dateKhoanChi;
+    private String idUserKhoanChi;
 
     public KhoanChi() {
     }
 
-    public KhoanChi(String idKhoanChi, String titleKhoanChi, String oldKhoanChi, String moneyKhoanChi, String dateKhoanChi) {
+    public KhoanChi(String idKhoanChi, String titleKhoanChi, String oldKhoanChi, String moneyKhoanChi, String dateKhoanChi, String idUserKhoanChi) {
         this.idKhoanChi = idKhoanChi;
         this.titleKhoanChi = titleKhoanChi;
         this.oldKhoanChi = oldKhoanChi;
         this.moneyKhoanChi = moneyKhoanChi;
         this.dateKhoanChi = dateKhoanChi;
+        this.idUserKhoanChi = idUserKhoanChi;
     }
 
     public String getIdKhoanChi() {
@@ -56,5 +58,13 @@ public class KhoanChi {
 
     public void setDateKhoanChi(String dateKhoanChi) {
         this.dateKhoanChi = dateKhoanChi;
+    }
+
+    public String getIdUserKhoanChi() {
+        return idUserKhoanChi;
+    }
+
+    public void setIdUserKhoanChi(String idUserKhoanChi) {
+        this.idUserKhoanChi = idUserKhoanChi;
     }
 }
