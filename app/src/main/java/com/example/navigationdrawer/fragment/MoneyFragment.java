@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,10 @@ public class MoneyFragment extends Fragment {
     private DatabaseReference databaseReference;
     private KhoanChi khoanChiModel;
     private KhoanThu khoanThuModel;
-
+    private List<KhoanThu> khoanThuList;
+    private List<KhoanChi> khoanChiList;
+    private String[] totlatvalue = {"1"};
+    private String[] totlatvalue1 = {"1"};
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class MoneyFragment extends Fragment {
         textReceived = view.findViewById(R.id.textReceivedMoney);
         khoanChiModel = new KhoanChi();
         khoanThuModel = new KhoanThu();
+        khoanThuList = new ArrayList<>();
+        khoanChiList = new ArrayList<>();
         user = FirebaseAuth.getInstance().getCurrentUser();
         idUser = user.getUid();
         //get all money khoan chi
@@ -60,9 +66,11 @@ public class MoneyFragment extends Fragment {
 
                 for (DataSnapshot KhoanChiDatasnaps : snapshot.getChildren()) {
                     KhoanChi khoanChi = KhoanChiDatasnaps.getValue(KhoanChi.class);
+                    khoanChiList.add(khoanChi);
                     title += khoanChi.getMoneyKhoanChi();
-                    String totlatvalue = String.valueOf(title);
-                    textUsed.setText(totlatvalue + " VND");
+                     totlatvalue1[0] = String.valueOf(title);
+                    textUsed.setText(totlatvalue1[0] + " VND");
+                    Log.e("error1",totlatvalue1[0]);
                 }
             }
 
@@ -79,9 +87,11 @@ public class MoneyFragment extends Fragment {
                 int title = 0;
                 for (DataSnapshot KhoanThuDatasnaps : snapshot.getChildren()) {
                     KhoanThu khoanThu = KhoanThuDatasnaps.getValue(KhoanThu.class);
+                    khoanThuList.add(khoanThu);
                     title += khoanThu.getMoneyKhoanThu();
-                    String totlatvalue = String.valueOf(title);
-                    textReceived.setText(totlatvalue + " VND");
+                     totlatvalue[0] = String.valueOf(title);
+                    textReceived.setText(totlatvalue[0] + " VND");
+                    Log.e("error",totlatvalue[0]);
                 }
             }
 
@@ -90,9 +100,11 @@ public class MoneyFragment extends Fragment {
 
             }
         });
-        int Used = khoanChiModel.getMoneyKhoanChi();
-        int Received = khoanThuModel.getMoneyKhoanThu();
-        int cash =  Received - Used;
+
+
+        Log.e("errorlist", String.valueOf(khoanChiList.size()));
+        Log.e("errorlist1", String.valueOf(khoanThuList.size()));
+        int cash = Integer.parseInt(totlatvalue1[0])  - Integer.parseInt(totlatvalue[0]);
         String cashs = String.valueOf(cash);
         textCash.setText(cashs);
         return view;
