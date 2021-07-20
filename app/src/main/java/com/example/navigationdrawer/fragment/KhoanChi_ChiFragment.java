@@ -158,7 +158,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                 btn_Update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String _money = inputMoney.getText().toString();
+                        int _money = Integer.parseInt(inputMoney.getText().toString());
                         String _textdate = textDate.getText().toString();
                         String _title = textSpn.getText().toString();
                         String _oldtitle = inputOldTitle.getText().toString();
@@ -196,7 +196,7 @@ public class KhoanChi_ChiFragment extends Fragment {
         });
     }
 
-    private void upDateData(String idKhoanChi, String title,String oldtitle, String money, String date,String idUser) {
+    private void upDateData(String idKhoanChi, String title,String oldtitle, int money, String date,String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanChi").child(idKhoanChi);
         KhoanChi khoanChi = new KhoanChi(idKhoanChi, title,oldtitle, money, date,idUser);
         Dbref.setValue(khoanChi);
@@ -290,17 +290,17 @@ public class KhoanChi_ChiFragment extends Fragment {
                 String _idKhoanChi = UUID.randomUUID().toString();
                 String _spn = select;
                 String _title = textTitle.getText().toString();
-                String _money = textMoney.getText().toString();
+                int _money = Integer.parseInt(textMoney.getText().toString());
                 String _date = dateKhoanChi.getText().toString();
                 if (_title.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textTitle.requestFocus();
                     return;
-                } else if (_money.isEmpty()) {
-                    notificationDiaLog.showError(Gravity.CENTER);
-                    textMoney.requestFocus();
-                    return;
-                } else if (_date.isEmpty()) {
+                } //else if () {
+//                    notificationDiaLog.showError(Gravity.CENTER);
+//                    textMoney.requestFocus();
+//                    return;//                }
+                else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateKhoanChi.requestFocus();
                     return;

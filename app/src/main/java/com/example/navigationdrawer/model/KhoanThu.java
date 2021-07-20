@@ -4,14 +4,14 @@ public class KhoanThu {
     private String idKhoanThu;
     private String titleKhoanThu;
     private String oldTitle;
-    private String moneyKhoanThu;
+    private int moneyKhoanThu;
     private String dateKhoanThu;
     private String idUserKhoanThu;
 
     public KhoanThu() {
     }
 
-    public KhoanThu(String idKhoanThu, String titleKhoanThu, String oldTitle, String moneyKhoanThu, String dateKhoanThu, String idUserKhoanThu) {
+    public KhoanThu(String idKhoanThu, String titleKhoanThu, String oldTitle, int moneyKhoanThu, String dateKhoanThu, String idUserKhoanThu) {
         this.idKhoanThu = idKhoanThu;
         this.titleKhoanThu = titleKhoanThu;
         this.oldTitle = oldTitle;
@@ -44,11 +44,11 @@ public class KhoanThu {
         this.oldTitle = oldTitle;
     }
 
-    public String getMoneyKhoanThu() {
+    public int getMoneyKhoanThu() {
         return moneyKhoanThu;
     }
 
-    public void setMoneyKhoanThu(String moneyKhoanThu) {
+    public void setMoneyKhoanThu(int moneyKhoanThu) {
         this.moneyKhoanThu = moneyKhoanThu;
     }
 

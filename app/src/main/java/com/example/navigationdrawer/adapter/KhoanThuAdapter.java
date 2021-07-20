@@ -58,7 +58,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
         String idUser = firebaseUser.getUid();
         holder.inputTitle.setText(khoanThu.getTitleKhoanThu());
         holder.textDetail.setText(khoanThu.getOldTitle());
-        holder.inputMoney.setText(khoanThu.getMoneyKhoanThu() + "VND");
+        holder.inputMoney.setText(khoanThu.getMoneyKhoanThu() + " VND");
         holder.textDate.setText(khoanThu.getDateKhoanThu());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +89,11 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 ImageView imageClose = (ImageView) dialog.findViewById(R.id.image_close_Khoanthu);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog_KhoanThu);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog_KhoanThu);
-
+                int money = khoanThu1.getMoneyKhoanThu();
+                String moneyST = String.valueOf(money);
                 textTitle.setText(khoanThu1.getTitleKhoanThu());
                 inputTypes.setText(khoanThu1.getOldTitle());
-                inputMoney.setText(khoanThu1.getMoneyKhoanThu());
+                inputMoney.setText(moneyST);
                 textDate.setText(khoanThu1.getDateKhoanThu());
 
 
@@ -124,7 +125,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                     public void onClick(View v) {
                         String _title = textTitle.getText().toString();
                         String _types = inputTypes.getText().toString();
-                        String _money = inputMoney.getText().toString();
+                        int _money = Integer.parseInt(inputMoney.getText().toString());
                         String _textdate = textDate.getText().toString();
                         upDateData(_id,_title,_types,_money,_textdate,idUser);
                         dialog.dismiss();
@@ -164,7 +165,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
         });
     }
 
-    private void upDateData(String idKhoanThu, String title,String types,String money, String date,String idUser) {
+    private void upDateData(String idKhoanThu, String title,String types,int money, String date,String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanThu").child(idKhoanThu);
         KhoanThu khoanThu = new KhoanThu(idKhoanThu, title,types,money, date,idUser);
         Dbref.setValue(khoanThu);

@@ -192,17 +192,20 @@ public class KhoanThu_ThuFragment extends Fragment {
                 String _idKhoanThu = UUID.randomUUID().toString();
                 String _spn = select;
                 String _title = textTitle.getText().toString();
-                String _money = textMoney.getText().toString();
+                int _money = Integer.parseInt(textMoney.getText().toString());
                 String _date = dateKhoanThu.getText().toString();
+
+//                else if (_money.isEmpty()) {
+//                    notificationDiaLog.showError(Gravity.CENTER);
+//                    textMoney.requestFocus();
+//                    return;
+//                }
+
                 if (_title.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textTitle.requestFocus();
                     return;
-                } else if (_money.isEmpty()) {
-                    notificationDiaLog.showError(Gravity.CENTER);
-                    textMoney.requestFocus();
-                    return;
-                } else if (_date.isEmpty()) {
+                }  else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateKhoanThu.requestFocus();
                     return;

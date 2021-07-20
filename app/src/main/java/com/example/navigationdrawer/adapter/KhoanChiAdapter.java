@@ -60,7 +60,7 @@ public class KhoanChiAdapter extends BaseAdapter {
 
         title.setText(khoanChi.getTitleKhoanChi());
         oldtitle.setText(khoanChi.getOldKhoanChi());
-        moNey.setText(khoanChi.getMoneyKhoanChi() + "VND");
+        moNey.setText(khoanChi.getMoneyKhoanChi() + " VND");
         datetime.setText(khoanChi.getDateKhoanChi());
         return view;
     }
