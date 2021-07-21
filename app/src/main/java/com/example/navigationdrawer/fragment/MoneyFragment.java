@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,12 +102,17 @@ public class MoneyFragment extends Fragment {
             }
         });
 
-
-        Log.e("errorlist", String.valueOf(khoanChiList.size()));
-        Log.e("errorlist1", String.valueOf(khoanThuList.size()));
-        int cash = Integer.parseInt(totlatvalue1[0])  - Integer.parseInt(totlatvalue[0]);
-        String cashs = String.valueOf(cash);
-        textCash.setText(cashs);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("errorlist", String.valueOf(khoanChiList.size()));
+                Log.e("errorlist1", String.valueOf(khoanThuList.size()));
+                int cash = Integer.parseInt(totlatvalue1[0])  - Integer.parseInt(totlatvalue[0]);
+                String cashs = String.valueOf(cash);
+                textCash.setText(cashs + " VND");
+            }
+        },5000);
         return view;
     }
 
