@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,23 +21,19 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.adapter.KhoanThuAdapter;
-import com.example.navigationdrawer.adapter.SpinnerAdapterKhoanThu;
+import com.example.navigationdrawer.adapter.SpinnerKhoanThuAdapter;
 import com.example.navigationdrawer.model.KhoanThu;
-import com.example.navigationdrawer.model.LoaiChi;
 import com.example.navigationdrawer.model.LoaiThu;
-import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,11 +58,12 @@ public class KhoanThu_ThuFragment extends Fragment {
     private Notification_DiaLog notificationDiaLog;
     private FloatingActionButton fabKhoanThu;
     private RecyclerView recyclerViewKhoanThu;
-    private SpinnerAdapterKhoanThu spinnerAdapterKhoanThu;
+    private SpinnerKhoanThuAdapter spinnerKhoanThuAdapter;
     private DatabaseReference DbRef;
     private String select;
     private FirebaseUser firebaseUser;
     private String idUser;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,7 +80,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         notificationDiaLog = new Notification_DiaLog(getActivity());
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
-        spinnerAdapterKhoanThu = new SpinnerAdapterKhoanThu(loaiThuList,getActivity());
+        spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList,getActivity());
 
         //create coletion
         DbRef = FirebaseDatabase.getInstance().getReference().child("KhoanThu");
@@ -140,8 +136,8 @@ public class KhoanThu_ThuFragment extends Fragment {
                     LoaiThu loaiThu = LoaiThuDatasnaps.getValue(LoaiThu.class);
                     loaiThuList.add(loaiThu);
                 }
-                spinnerAdapterKhoanThu = new SpinnerAdapterKhoanThu(loaiThuList, getActivity());
-                spinnerKhoanThu.setAdapter(spinnerAdapterKhoanThu);
+                spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList, getActivity());
+                spinnerKhoanThu.setAdapter(spinnerKhoanThuAdapter);
             }
 
             @Override
@@ -153,7 +149,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         spinnerKhoanThu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                select = ((LoaiThu) spinnerAdapterKhoanThu.getItem(position)).getTitleLoaiThu();
+                select = ((LoaiThu) spinnerKhoanThuAdapter.getItem(position)).getTitleLoaiThu();
             }
 
             @Override

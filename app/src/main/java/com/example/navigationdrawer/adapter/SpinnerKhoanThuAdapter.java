@@ -21,10 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class SpinnerAdapterKhoanThu extends BaseAdapter {
+public class SpinnerKhoanThuAdapter extends BaseAdapter {
     private List<LoaiThu> data;
     private Context context;
-    public SpinnerAdapterKhoanThu(List<LoaiThu> data, Context context) {
+    public SpinnerKhoanThuAdapter(List<LoaiThu> data, Context context) {
         this.data = data;
         this.context = context;
     }

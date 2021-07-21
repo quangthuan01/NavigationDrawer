@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MoneyFragment"
     android:background="@color/light_white"
-    >
+    tools:context=".fragment.MoneyFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,13 +15,14 @@
             android:id="@+id/cardView3"
             android:layout_width="250dp"
             android:layout_height="200dp"
+            android:elevation="10dp"
             app:cardCornerRadius="50dp"
             app:cardElevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".3">
+            app:layout_constraintVertical_bias=".2">
 
             <TextView
                 android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/app_name"
+                android:text="0"
                 android:textColor="@color/dark"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -47,8 +48,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:elevation="10dp"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -64,30 +66,31 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="Amount used :"
-                android:textColor="@color/dark"
-                android:textSize="22sp" />
+                android:textColor="@color/red"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textUsedMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/app_name"
+                android:text="0"
                 android:textColor="@color/dark"
                 android:textSize="20sp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="180dp"
-            android:layout_height="140dp"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:elevation="10dp"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp"
-            app:layout_constraintHorizontal_bias=".9"
-            app:layout_constraintVertical_bias=".4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3" >
+            app:layout_constraintTop_toBottomOf="@+id/cardView3"
+            app:layout_constraintVertical_bias=".4">
 
             <TextView
                 android:layout_width="match_parent"
@@ -95,15 +98,15 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="Amount received :"
-                android:textColor="@color/dark"
-                android:textSize="22sp" />
+                android:textColor="#00BCD4"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textReceivedMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/app_name"
+                android:text="0"
                 android:textColor="@color/dark"
                 android:textSize="20sp" />
 
