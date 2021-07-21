@@ -38,14 +38,15 @@ import java.util.List;
 public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHolder> {
     List<LoaiThu> data;
     Context context;
-    public LoaiThuAdapter(List<LoaiThu> data,Context context) {
+
+    public LoaiThuAdapter(List<LoaiThu> data, Context context) {
         this.data = data;
-        this.context=context;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(
 
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_loaithu, parent, false)
@@ -53,10 +54,10 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  LoaiThuAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LoaiThuAdapter.MyViewHolder holder, int position) {
         LoaiThu loaiThu = data.get(position);
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        String idUser= firebaseUser.getUid();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String idUser = firebaseUser.getUid();
         //set data
         holder.titleLoaithu.setText(loaiThu.getTitleLoaiThu());
         holder.dateLoaithu.setText(loaiThu.getDateLoaiThu());
@@ -64,7 +65,7 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoaiThu  loaiThu = data.get(position) ;
+                LoaiThu loaiThu = data.get(position);
                 String _id = loaiThu.getIdLoaiThu();
                 Dialog dialog = new Dialog(v.getContext());
                 //set click
@@ -112,7 +113,7 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
                     public void onClick(View v) {
                         String _title = inputTitle.getText().toString();
                         String _textdate = textDate.getText().toString();
-                        upDateData(_id,_title,_textdate,idUser);
+                        upDateData(_id, _title, _textdate, idUser);
                         dialog.dismiss();
                         Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
@@ -152,7 +153,7 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
 
     private void upDateData(String idLoaiThu, String title, String date, String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("LoaiThu").child(idLoaiThu);
-        LoaiThu loaiThu = new LoaiThu(idLoaiThu, title, date,idUser);
+        LoaiThu loaiThu = new LoaiThu(idLoaiThu, title, date, idUser);
         Dbref.setValue(loaiThu);
     }
 
@@ -167,12 +168,12 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView titleLoaithu,dateLoaithu;
-            LinearLayout linearLayout;
+        TextView titleLoaithu, dateLoaithu;
+        LinearLayout linearLayout;
 
-        public MyViewHolder(@NonNull  View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleLoaithu  = itemView.findViewById(R.id.item_textLoaiThu);
+            titleLoaithu = itemView.findViewById(R.id.item_textLoaiThu);
             dateLoaithu = itemView.findViewById(R.id.item_textDateLoaiThu);
             linearLayout = itemView.findViewById(R.id.layout_container_item_recyclerview);
         }

@@ -17,12 +17,12 @@
         <TextView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Category"
             android:textColor="@color/bluesky"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/item_TheLoaiKhoanChi"
@@ -33,7 +33,7 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +45,12 @@
         <TextView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Types"
             android:textColor="@color/bluesky"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/item_OldTheLoaiKhoanChi"
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,12 +73,12 @@
         <TextView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Money"
             android:textColor="@color/bluesky"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/item_textSoTienChi"
@@ -89,7 +89,7 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,12 +102,12 @@
         <TextView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Date"
             android:textColor="@color/bluesky"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/item_textDateKhoanChi"
@@ -118,6 +118,6 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

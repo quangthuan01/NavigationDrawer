@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.model.KhoanThu;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
@@ -29,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,17 +46,17 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-         return new KhoanThuAdapter.MyViewHolder(
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new KhoanThuAdapter.MyViewHolder(
 
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_khoanthu, parent, false)
         );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  KhoanThuAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull KhoanThuAdapter.MyViewHolder holder, int position) {
         //set du lieu len recyclerview
-        KhoanThu khoanThu =data.get(position);
+        KhoanThu khoanThu = data.get(position);
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idUser = firebaseUser.getUid();
         holder.inputTitle.setText(khoanThu.getTitleKhoanThu());
@@ -70,7 +73,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 Window window = dialog.getWindow();
                 //check
-                if (window == null){
+                if (window == null) {
                     return;
                 }
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -127,7 +130,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                         String _types = inputTypes.getText().toString();
                         int _money = Integer.parseInt(inputMoney.getText().toString());
                         String _textdate = textDate.getText().toString();
-                        upDateData(_id,_title,_types,_money,_textdate,idUser);
+                        upDateData(_id, _title, _types, _money, _textdate, idUser);
                         dialog.dismiss();
                         Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
@@ -147,6 +150,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
             }
         });
     }
+
     private void deleteLoaiChi(String idKhoanThu) {
         DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("KhoanThu").child(idKhoanThu);
         Task<Void> task = DbRef.removeValue();
@@ -165,9 +169,9 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
         });
     }
 
-    private void upDateData(String idKhoanThu, String title,String types,int money, String date,String idUser) {
+    private void upDateData(String idKhoanThu, String title, String types, int money, String date, String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanThu").child(idKhoanThu);
-        KhoanThu khoanThu = new KhoanThu(idKhoanThu, title,types,money, date,idUser);
+        KhoanThu khoanThu = new KhoanThu(idKhoanThu, title, types, money, date, idUser);
         Dbref.setValue(khoanThu);
     }
 
@@ -184,10 +188,10 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView textDate,inputTitle,textDetail,inputMoney;
+        TextView textDate, inputTitle, textDetail, inputMoney;
         LinearLayout linearLayout;
 
-        public MyViewHolder(@NonNull  View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             inputTitle = itemView.findViewById(R.id.item_TheLoaiKhoanThu);

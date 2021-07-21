@@ -162,19 +162,19 @@ public class SignUpFragment extends Fragment {
 
     private Boolean validatePassword() {
         String val = inputPassword.getText().toString();
-        String passwordVal = "^"+
-                "(?=.*[a-zA-Z])"+ //any letter
-                "(?=.*[@#$%^&+=])"+ //at least 1 special character
-                "(?=\\S+$)"+//no white spaces
-                ".{4,}"+    //at least 4 characters
+        String passwordVal = "^" +
+                "(?=.*[a-zA-Z])" + //any letter
+                "(?=.*[@#$%^&+=])" + //at least 1 special character
+                "(?=\\S+$)" +//no white spaces
+                ".{4,}" +    //at least 4 characters
                 "$";
         if (val.isEmpty()) {
             inputPassword.setError("Field cannot be empty");
             return false;
-        }else  if (!val.matches(passwordVal)){
-                inputPassword.setError("Password is too weak");
-                return false;
-        }else {
+        } else if (!val.matches(passwordVal)) {
+            inputPassword.setError("Password is too weak");
+            return false;
+        } else {
             inputPassword.setError(null);
             return true;
         }

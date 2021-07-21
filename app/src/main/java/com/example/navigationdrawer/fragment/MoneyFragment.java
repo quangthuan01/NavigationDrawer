@@ -44,6 +44,7 @@ public class MoneyFragment extends Fragment {
     private List<KhoanChi> khoanChiList;
     private String[] totlatvalue = {"1"};
     private String[] totlatvalue1 = {"1"};
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,9 +70,9 @@ public class MoneyFragment extends Fragment {
                     KhoanChi khoanChi = KhoanChiDatasnaps.getValue(KhoanChi.class);
                     khoanChiList.add(khoanChi);
                     title += khoanChi.getMoneyKhoanChi();
-                     totlatvalue1[0] = String.valueOf(title);
+                    totlatvalue1[0] = String.valueOf(title);
                     textUsed.setText(totlatvalue1[0] + " VND");
-                    Log.e("error1",totlatvalue1[0]);
+                    Log.e("error1", totlatvalue1[0]);
                 }
             }
 
@@ -90,9 +91,9 @@ public class MoneyFragment extends Fragment {
                     KhoanThu khoanThu = KhoanThuDatasnaps.getValue(KhoanThu.class);
                     khoanThuList.add(khoanThu);
                     title += khoanThu.getMoneyKhoanThu();
-                     totlatvalue[0] = String.valueOf(title);
+                    totlatvalue[0] = String.valueOf(title);
                     textReceived.setText(totlatvalue[0] + " VND");
-                    Log.e("error",totlatvalue[0]);
+                    Log.e("error", totlatvalue[0]);
                 }
             }
 
@@ -108,11 +109,11 @@ public class MoneyFragment extends Fragment {
             public void run() {
                 Log.e("errorlist", String.valueOf(khoanChiList.size()));
                 Log.e("errorlist1", String.valueOf(khoanThuList.size()));
-                int cash = Integer.parseInt(totlatvalue1[0])  - Integer.parseInt(totlatvalue[0]);
+                int cash = Integer.parseInt(totlatvalue[0]) - Integer.parseInt(totlatvalue1[0]);
                 String cashs = String.valueOf(cash);
                 textCash.setText(cashs + " VND");
             }
-        },5000);
+        }, 5000);
         return view;
     }
 

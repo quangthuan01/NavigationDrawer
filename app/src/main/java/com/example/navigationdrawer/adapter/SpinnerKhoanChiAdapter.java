@@ -69,8 +69,8 @@ public class SpinnerKhoanChiAdapter extends BaseAdapter {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data.clear();
-                for (DataSnapshot LoaiChiSp : snapshot.getChildren()){
-                    LoaiChi loaiChi =  LoaiChiSp.getValue(LoaiChi.class);
+                for (DataSnapshot LoaiChiSp : snapshot.getChildren()) {
+                    LoaiChi loaiChi = LoaiChiSp.getValue(LoaiChi.class);
                     data.add(loaiChi);
                 }
                 LoaiChi loaiChi = (LoaiChi) getItem(position);

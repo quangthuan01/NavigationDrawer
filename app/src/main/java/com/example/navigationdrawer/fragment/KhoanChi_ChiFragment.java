@@ -117,7 +117,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                 AutoCompleteTextView inputOldTitle = (AutoCompleteTextView) dialog.findViewById(R.id.input_Update_OldTitle_KhoanChi_DiaLog);
                 TextView textDate = (TextView) dialog.findViewById(R.id.text_Update_Date_KhoanChi_DiaLog);
                 ImageView imageClose = (ImageView) dialog.findViewById(R.id.image_close_KhoanChi);
-                TextView textSpn = (TextView)dialog.findViewById(R.id.textspinnerUpdateKhoanChi);
+                TextView textSpn = (TextView) dialog.findViewById(R.id.textspinnerUpdateKhoanChi);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog__KhoanChi);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog__KhoanChi);
 
@@ -156,7 +156,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                         String _textdate = textDate.getText().toString();
                         String _title = textSpn.getText().toString();
                         String _oldtitle = inputOldTitle.getText().toString();
-                        upDateData(_id,_title,_oldtitle,_money,_textdate,idUser);
+                        upDateData(_id, _title, _oldtitle, _money, _textdate, idUser);
                         dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
@@ -169,7 +169,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
                 });
-            dialog.show();
+                dialog.show();
             }
         });
     }
@@ -190,9 +190,9 @@ public class KhoanChi_ChiFragment extends Fragment {
         });
     }
 
-    private void upDateData(String idKhoanChi, String title,String oldtitle, int money, String date,String idUser) {
+    private void upDateData(String idKhoanChi, String title, String oldtitle, int money, String date, String idUser) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("KhoanChi").child(idKhoanChi);
-        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title,oldtitle, money, date,idUser);
+        KhoanChi khoanChi = new KhoanChi(idKhoanChi, title, oldtitle, money, date, idUser);
         Dbref.setValue(khoanChi);
     }
 
@@ -299,7 +299,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                     dateKhoanChi.requestFocus();
                     return;
                 } else {
-                    khoanChiModel = new KhoanChi(_idKhoanChi,_spn, _title, _money, _date,idUser);
+                    khoanChiModel = new KhoanChi(_idKhoanChi, _spn, _title, _money, _date, idUser);
                     databaseReference.child(khoanChiModel.getIdKhoanChi()).setValue(khoanChiModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();

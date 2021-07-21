@@ -35,7 +35,7 @@ public class TaiKhoanFragment extends Fragment {
     private TextView textSignOut, textEmail, textPhone, textFullName, textFull;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
-    String idUser;
+    private String idUser;
 
     @Nullable
     @Override

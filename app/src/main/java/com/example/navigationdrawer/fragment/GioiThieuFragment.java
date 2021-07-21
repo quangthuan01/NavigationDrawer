@@ -128,13 +128,13 @@ public class GioiThieuFragment extends Fragment {
         locationViewPager2.setOffscreenPageLimit(3);
         locationViewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
-        CompositePageTransformer compositePageTransformer  = new CompositePageTransformer();
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
-            public void transformPage(@NonNull  View page, float position) {
-                    float r  = 1-Math.abs(position);
-                    page.setScaleY(0.95f + r * 0.05f);
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.95f + r * 0.05f);
 
 
             }

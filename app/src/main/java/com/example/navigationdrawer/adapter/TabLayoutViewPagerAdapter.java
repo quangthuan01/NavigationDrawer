@@ -12,7 +12,7 @@ public class TabLayoutViewPagerAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
     ArrayList<String> stringArrayList = new ArrayList<>();
 
-    public void AddFragment(Fragment fragment, String s){
+    public void AddFragment(Fragment fragment, String s) {
         //addFragment
         fragmentArrayList.add(fragment);
         //addString
@@ -20,7 +20,7 @@ public class TabLayoutViewPagerAdapter extends FragmentPagerAdapter {
 
     }
 
-    public TabLayoutViewPagerAdapter(@NonNull  FragmentManager fm) {
+    public TabLayoutViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
@@ -42,6 +42,6 @@ public class TabLayoutViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         //return tab title
-      return stringArrayList.get(position);
+        return stringArrayList.get(position);
     }
 }

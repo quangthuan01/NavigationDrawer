@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         // initialize munu item
         List<MenuItem> itemList = new ArrayList<>();
         //add menu item in list
-        itemList.add(new MenuItem("Revenues",R.drawable.message_bg));
-        itemList.add(new MenuItem("Spending money",R.drawable.news_bg));
-        itemList.add(new MenuItem("Statistical",R.drawable.music_bg));
-        itemList.add(new MenuItem("Introduce",R.drawable.feed_bg));
-        itemList.add(new MenuItem("Account",R.drawable.account));
+        itemList.add(new MenuItem("Revenues", R.drawable.message_bg));
+        itemList.add(new MenuItem("Spending money", R.drawable.news_bg));
+        itemList.add(new MenuItem("Statistical", R.drawable.music_bg));
+        itemList.add(new MenuItem("Introduce", R.drawable.feed_bg));
+        itemList.add(new MenuItem("Account", R.drawable.account));
 
         sNavigationDrawer.setMenuItemList(itemList);
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         sNavigationDrawer.setOnMenuItemClickListener(new SNavigationDrawer.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClicked(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         aClass = ChiFragment.class;
                         break;
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         aClass = TaiKhoanFragment.class;
                         break;
-
                 }
             }
         });
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         sNavigationDrawer.setDrawerListener(new SNavigationDrawer.DrawerListener() {
             @Override
             public void onDrawerOpening() {
-
             }
 
             @Override
@@ -84,17 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened() {
-
             }
 
             @Override
             public void onDrawerClosed() {
-
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
-
             }
         });
     }
@@ -107,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.fade_in
                             , android.R.anim.fade_out)
-                    .replace(R.id.frame_layout,fragment)
+                    .replace(R.id.frame_layout, fragment)
                     .commit();
         } catch (IllegalAccessException e) {
             e.printStackTrace();

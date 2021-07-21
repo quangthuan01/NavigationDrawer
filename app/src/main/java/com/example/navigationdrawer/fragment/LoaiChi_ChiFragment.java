@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.adapter.LoaiChiAdapter;
 import com.example.navigationdrawer.model.LoaiChi;
@@ -65,8 +66,8 @@ public class LoaiChi_ChiFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_loai_chi__chi,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_loai_chi__chi, container, false);
         //Asssign varible
         navigationView = view.findViewById(R.id.bottomnavigationView);
         navigationView.setBackground(null);
@@ -77,9 +78,9 @@ public class LoaiChi_ChiFragment extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
         //thong bao
-        notificationDiaLog= new Notification_DiaLog(getActivity());
+        notificationDiaLog = new Notification_DiaLog(getActivity());
         //--------
-        loaiChiList  = new ArrayList<>();
+        loaiChiList = new ArrayList<>();
         //----------khoi tao colection
         DbRef = FirebaseDatabase.getInstance().getReference().child("LoaiChi");
         //lay du lieu tu tren firebase ve app
@@ -137,9 +138,9 @@ public class LoaiChi_ChiFragment extends Fragment {
                 btn_update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String  _title = inputUpdateLoaiChi.getText().toString();
+                        String _title = inputUpdateLoaiChi.getText().toString();
                         String _date = dateUpdateLoaiChi.getText().toString();
-                        upDateData(_idLoaiChi,_title,_date,idUser);
+                        upDateData(_idLoaiChi, _title, _date, idUser);
                         dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
@@ -147,8 +148,8 @@ public class LoaiChi_ChiFragment extends Fragment {
                 btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    deleteLoaiChi(_idLoaiChi);
-                    dialog.dismiss();
+                        deleteLoaiChi(_idLoaiChi);
+                        dialog.dismiss();
                         notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
                 });
@@ -159,6 +160,7 @@ public class LoaiChi_ChiFragment extends Fragment {
 
         return view;
     }
+
     private void deleteLoaiChi(String idChi) {
         DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("LoaiChi").child(idChi);
         Task<Void> task = DbRef.removeValue();
@@ -177,17 +179,17 @@ public class LoaiChi_ChiFragment extends Fragment {
 
     private void upDateData(String _id, String _title, String _date, String _idUserLoaiChi) {
         DatabaseReference Dbref = FirebaseDatabase.getInstance().getReference("LoaiChi").child(_id);
-        LoaiChi loaiChi = new LoaiChi(_id,_title,_date,_idUserLoaiChi);
+        LoaiChi loaiChi = new LoaiChi(_id, _title, _date, _idUserLoaiChi);
         Dbref.setValue(loaiChi);
     }
 
-    private  void showDiaLogInsert(int gravity){
+    private void showDiaLogInsert(int gravity) {
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_chi_loaichi);
         Window window = dialog.getWindow();
         //check
-        if (window == null){
+        if (window == null) {
             return;
         }
         // xu ly vi tri dia log center
@@ -197,9 +199,9 @@ public class LoaiChi_ChiFragment extends Fragment {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        if (Gravity.BOTTOM == gravity){
+        if (Gravity.BOTTOM == gravity) {
             dialog.setCancelable(true);//co the tat dialog khi click ben ngoai
-        }else {
+        } else {
             dialog.setCancelable(false);//ko the tat dialog khi click ben ngoai
         }
         EditText textLoaiChi = (EditText) dialog.findViewById(R.id.inputTextLoaiChi_DiaLog);
@@ -235,18 +237,18 @@ public class LoaiChi_ChiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String _idloaichi = UUID.randomUUID().toString();
-                String  _title  = textLoaiChi.getText().toString();
-                String  _date = dateLoaiChi.getText().toString();
-                if (_title.isEmpty()){
+                String _title = textLoaiChi.getText().toString();
+                String _date = dateLoaiChi.getText().toString();
+                if (_title.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textLoaiChi.requestFocus();
                     return;
-                }else if (_date.isEmpty()){
+                } else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateLoaiChi.requestFocus();
                     return;
-                }else {
-                    loaiChiModel = new LoaiChi(_idloaichi,_title,_date,idUser);
+                } else {
+                    loaiChiModel = new LoaiChi(_idloaichi, _title, _date, idUser);
                     DbRef.child(loaiChiModel.getIdLoaiChi()).setValue(loaiChiModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
@@ -261,7 +263,7 @@ public class LoaiChi_ChiFragment extends Fragment {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("LoaiChi");
         databaseReference.orderByChild("idUserLoaiChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 loaiChiList.clear();
                 for (DataSnapshot LoaiChiDatasnaps : snapshot.getChildren()) {
                     LoaiChi loaiChi = LoaiChiDatasnaps.getValue(LoaiChi.class);
@@ -272,7 +274,7 @@ public class LoaiChi_ChiFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

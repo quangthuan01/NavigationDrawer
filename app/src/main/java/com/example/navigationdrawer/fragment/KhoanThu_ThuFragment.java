@@ -80,7 +80,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         notificationDiaLog = new Notification_DiaLog(getActivity());
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
-        spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList,getActivity());
+        spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList, getActivity());
 
         //create coletion
         DbRef = FirebaseDatabase.getInstance().getReference().child("KhoanThu");
@@ -201,12 +201,12 @@ public class KhoanThu_ThuFragment extends Fragment {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textTitle.requestFocus();
                     return;
-                }  else if (_date.isEmpty()) {
+                } else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateKhoanThu.requestFocus();
                     return;
                 } else {
-                    khoanThuModel = new KhoanThu(_idKhoanThu,_spn, _title, _money, _date,idUser);
+                    khoanThuModel = new KhoanThu(_idKhoanThu, _spn, _title, _money, _date, idUser);
                     DbRef.child(khoanThuModel.getIdKhoanThu()).setValue(khoanThuModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
@@ -216,7 +216,8 @@ public class KhoanThu_ThuFragment extends Fragment {
         dialog.show();
 
     }
-    private void getDataFireBase(){
+
+    private void getDataFireBase() {
         // get data to fire ->> app
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("KhoanThu");

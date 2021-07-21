@@ -52,26 +52,27 @@ public class LoaiThu_ThuFragment extends Fragment {
     private List<LoaiThu> loaiThuList;
     private LoaiThu loaiThuModel;
     private LoaiThuAdapter loaiThuAdapter;
-    private RecyclerView  recyclerView;
+    private RecyclerView recyclerView;
     private DatabaseReference DbRef;
     private Notification_DiaLog notificationDiaLog;
     private FirebaseUser firebaseUser;
     private String idUser;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_loai_thu__thu,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_loai_thu__thu, container, false);
 
         fabLoaiThu = view.findViewById(R.id.floatingActionButton);
         recyclerView = view.findViewById(R.id.recyclerViewLoaiThu);
         notificationDiaLog = new Notification_DiaLog(getActivity());
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         //get userID
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
         loaiThuList = new ArrayList<>();
-        loaiThuAdapter = new LoaiThuAdapter(loaiThuList,getActivity());
+        loaiThuAdapter = new LoaiThuAdapter(loaiThuList, getActivity());
         DbRef = FirebaseDatabase.getInstance().getReference().child("LoaiThu");
 
         //getdataFireBase
@@ -93,7 +94,7 @@ public class LoaiThu_ThuFragment extends Fragment {
         dialog.setContentView(R.layout.dialog_thu_loaithu);
         Window window = dialog.getWindow();
         //check
-        if (window == null){
+        if (window == null) {
             return;
         }
         // xu ly vi tri dia log center
@@ -103,9 +104,9 @@ public class LoaiThu_ThuFragment extends Fragment {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        if (Gravity.BOTTOM == gravity){
+        if (Gravity.BOTTOM == gravity) {
             dialog.setCancelable(true);//co the tat dialog khi click ben ngoai
-        }else {
+        } else {
             dialog.setCancelable(false);//ko the tat dialog khi click ben ngoai
         }
         EditText textLoaiThu = (EditText) dialog.findViewById(R.id.inputTextLoaiThu_DiaLog);
@@ -141,18 +142,18 @@ public class LoaiThu_ThuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String _idloaithu = UUID.randomUUID().toString();
-                String  _title  = textLoaiThu.getText().toString();
-                String  _date = dateLoaiThu.getText().toString();
-                if (_title.isEmpty()){
+                String _title = textLoaiThu.getText().toString();
+                String _date = dateLoaiThu.getText().toString();
+                if (_title.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textLoaiThu.requestFocus();
                     return;
-                }else if (_date.isEmpty()){
+                } else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateLoaiThu.requestFocus();
                     return;
-                }else {
-                     loaiThuModel = new LoaiThu(_idloaithu, _title, _date,idUser);
+                } else {
+                    loaiThuModel = new LoaiThu(_idloaithu, _title, _date, idUser);
                     DbRef.child(loaiThuModel.getIdLoaiThu()).setValue(loaiThuModel);
                     notificationDiaLog.showSuccessful(Gravity.CENTER);
                     dialog.dismiss();
@@ -163,7 +164,8 @@ public class LoaiThu_ThuFragment extends Fragment {
 
 
     }
-    private void getDataFireBase(){
+
+    private void getDataFireBase() {
         // get data to fire ->> app
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("LoaiThu");
         databaseReference.orderByChild("idUserLoaiThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
@@ -174,7 +176,7 @@ public class LoaiThu_ThuFragment extends Fragment {
                     LoaiThu loaiThu = LoaiThuDatasnaps.getValue(LoaiThu.class);
                     loaiThuList.add(loaiThu);
                 }
-                loaiThuAdapter = new LoaiThuAdapter(loaiThuList,getActivity());
+                loaiThuAdapter = new LoaiThuAdapter(loaiThuList, getActivity());
                 recyclerView.setAdapter(loaiThuAdapter);
 
             }

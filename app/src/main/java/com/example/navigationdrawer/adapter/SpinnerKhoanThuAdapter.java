@@ -24,6 +24,7 @@ import java.util.List;
 public class SpinnerKhoanThuAdapter extends BaseAdapter {
     private List<LoaiThu> data;
     private Context context;
+
     public SpinnerKhoanThuAdapter(List<LoaiThu> data, Context context) {
         this.data = data;
         this.context = context;
@@ -56,18 +57,18 @@ public class SpinnerKhoanThuAdapter extends BaseAdapter {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("LoaiThu");
         databaseReference.orderByChild("idUserLoaiThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data.clear();
-                for (DataSnapshot LoaiThuSp : snapshot.getChildren()){
-                    LoaiThu loaiThu =  LoaiThuSp.getValue(LoaiThu.class);
+                for (DataSnapshot LoaiThuSp : snapshot.getChildren()) {
+                    LoaiThu loaiThu = LoaiThuSp.getValue(LoaiThu.class);
                     data.add(loaiThu);
                 }
-                LoaiThu loaiThu = (LoaiThu)getItem(position);
+                LoaiThu loaiThu = (LoaiThu) getItem(position);
                 spn_loaichi.setText(loaiThu.getTitleLoaiThu());
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

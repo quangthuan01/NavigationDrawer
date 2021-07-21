@@ -17,9 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgetPassword extends AppCompatActivity {
-   private EditText enterEmail;
-   private Button reSetPass,gotoLogin;
-   private   FirebaseAuth auth;
+    private EditText enterEmail;
+    private Button reSetPass, gotoLogin;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class ForgetPassword extends AppCompatActivity {
         gotoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ForgetPassword.this,LoginActivity.class));
+                startActivity(new Intent(ForgetPassword.this, LoginActivity.class));
                 finish();
             }
         });
@@ -66,7 +67,7 @@ public class ForgetPassword extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(ForgetPassword.this, "Check your email to reset your password!", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
                     Toast.makeText(ForgetPassword.this, "Try again! Something wrong happened! ", Toast.LENGTH_SHORT).show();
                 }
             }

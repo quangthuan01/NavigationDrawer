@@ -22,7 +22,7 @@ import com.thecode.aestheticdialogs.DialogType;
 
 import java.util.List;
 
-public class LoaiChiAdapter  extends BaseAdapter {
+public class LoaiChiAdapter extends BaseAdapter {
     private List<LoaiChi> data;
     private Context context;
 

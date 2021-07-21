@@ -1,10 +1,10 @@
 package com.example.navigationdrawer.model;
 
 public class LoaiChi {
-   private String idLoaiChi;
-   private String titleLoaiChi;
-   private String dateLoaiChi;
-   private String idUserLoaiChi;
+    private String idLoaiChi;
+    private String titleLoaiChi;
+    private String dateLoaiChi;
+    private String idUserLoaiChi;
 
     public LoaiChi() {
     }

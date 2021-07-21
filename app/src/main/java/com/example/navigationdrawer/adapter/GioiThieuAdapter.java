@@ -32,7 +32,7 @@ public class GioiThieuAdapter extends RecyclerView.Adapter<GioiThieuAdapter.Trav
 
     @Override
     public void onBindViewHolder(@NonNull GioiThieuAdapter.TravelLocationViewHolder holder, int position) {
-            holder.setLocationData(gioiThieus.get(position));
+        holder.setLocationData(gioiThieus.get(position));
     }
 
     @Override

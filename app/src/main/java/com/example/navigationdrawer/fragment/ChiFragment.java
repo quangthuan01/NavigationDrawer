@@ -21,24 +21,25 @@ import com.google.android.material.tabs.TabLayout;
  */
 public class ChiFragment extends Fragment {
     TabLayout tabLayout;
-    ViewPager  viewPager;
+    ViewPager viewPager;
     TabLayoutViewPagerAdapter tabLayoutViewPagerAdapter;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-            ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_chi,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_chi, container, false);
 
-            tabLayout = view.findViewById(R.id.tablayout_Chi);
-            viewPager = view.findViewById(R.id.view_pagerChi);
+        tabLayout = view.findViewById(R.id.tablayout_Chi);
+        viewPager = view.findViewById(R.id.view_pagerChi);
 
-            tabLayoutViewPagerAdapter = new TabLayoutViewPagerAdapter(getActivity().getSupportFragmentManager());
-            //add fragment
-            tabLayoutViewPagerAdapter.AddFragment(new KhoanChi_ChiFragment(),"Expenditures");
-            tabLayoutViewPagerAdapter.AddFragment(new LoaiChi_ChiFragment(),"Spending money");
-            //setAdapter
-            viewPager.setAdapter(tabLayoutViewPagerAdapter);
-            //connect tablayout with viewPager
-            tabLayout.setupWithViewPager(viewPager);
-            return view;
+        tabLayoutViewPagerAdapter = new TabLayoutViewPagerAdapter(getActivity().getSupportFragmentManager());
+        //add fragment
+        tabLayoutViewPagerAdapter.AddFragment(new KhoanChi_ChiFragment(), "Expenditures");
+        tabLayoutViewPagerAdapter.AddFragment(new LoaiChi_ChiFragment(), "Spending money");
+        //setAdapter
+        viewPager.setAdapter(tabLayoutViewPagerAdapter);
+        //connect tablayout with viewPager
+        tabLayout.setupWithViewPager(viewPager);
+        return view;
     }
 }

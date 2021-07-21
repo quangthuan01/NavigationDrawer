@@ -39,16 +39,15 @@ public class SignInFragment extends Fragment {
     private FirebaseAuth mAuth;
 
 
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-      ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_sign_in,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_sign_in, container, false);
 
-      inputEmail = view.findViewById(R.id.EditTextInputEmail);
-      inputPassword = view.findViewById(R.id.EditTextInputPass);
-      forgetPassword = view.findViewById(R.id.forget_pass);
-      signIn = view.findViewById(R.id.btn_login);
+        inputEmail = view.findViewById(R.id.EditTextInputEmail);
+        inputPassword = view.findViewById(R.id.EditTextInputPass);
+        forgetPassword = view.findViewById(R.id.forget_pass);
+        signIn = view.findViewById(R.id.btn_login);
         mAuth = FirebaseAuth.getInstance();
 
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +104,9 @@ public class SignInFragment extends Fragment {
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),ForgetPassword.class));
+                startActivity(new Intent(getActivity(), ForgetPassword.class));
             }
         });
-      return view;
+        return view;
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
 import com.example.navigationdrawer.R;
 
 public class Notification_DiaLog {
@@ -17,13 +18,14 @@ public class Notification_DiaLog {
     public Notification_DiaLog(Context context) {
         this.context = context;
     }
-    public void showSuccessful(int gravity){
+
+    public void showSuccessful(int gravity) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_successful);
         Window window = dialog.getWindow();
         //check
-        if (window == null){
+        if (window == null) {
             return;
         }
         // xu ly vi tri dia log center
@@ -33,9 +35,9 @@ public class Notification_DiaLog {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        if (Gravity.BOTTOM == gravity){
+        if (Gravity.BOTTOM == gravity) {
             dialog.setCancelable(true);//co the tat dialog khi click ben ngoai
-        }else {
+        } else {
             dialog.setCancelable(false);//ko the tat dialog khi click ben ngoai
         }
         Button btnSuccess = (Button) dialog.findViewById(R.id.button_successful);
@@ -47,13 +49,14 @@ public class Notification_DiaLog {
         });
         dialog.show();
     }
-    public void showWarning(int gravity){
+
+    public void showWarning(int gravity) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_warning);
         Window window = dialog.getWindow();
         //check
-        if (window == null){
+        if (window == null) {
             return;
         }
         // xu ly vi tri dia log center
@@ -63,9 +66,9 @@ public class Notification_DiaLog {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        if (Gravity.BOTTOM == gravity){
+        if (Gravity.BOTTOM == gravity) {
             dialog.setCancelable(true);//co the tat dialog khi click ben ngoai
-        }else {
+        } else {
             dialog.setCancelable(false);//ko the tat dialog khi click ben ngoai
         }
         Button btnWarning = (Button) dialog.findViewById(R.id.button_warning);
@@ -77,13 +80,14 @@ public class Notification_DiaLog {
         });
         dialog.show();
     }
-    public void showError(int gravity){
+
+    public void showError(int gravity) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_failed);
         Window window = dialog.getWindow();
         //check
-        if (window == null){
+        if (window == null) {
             return;
         }
         // xu ly vi tri dia log center
@@ -93,9 +97,9 @@ public class Notification_DiaLog {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        if (Gravity.BOTTOM == gravity){
+        if (Gravity.BOTTOM == gravity) {
             dialog.setCancelable(true);//co the tat dialog khi click ben ngoai
-        }else {
+        } else {
             dialog.setCancelable(false);//ko the tat dialog khi click ben ngoai
         }
         Button btnFailed = (Button) dialog.findViewById(R.id.button_failed);
