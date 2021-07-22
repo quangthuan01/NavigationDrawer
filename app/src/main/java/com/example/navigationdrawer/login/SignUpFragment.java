@@ -1,11 +1,13 @@
 package com.example.navigationdrawer.login;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,8 @@ public class SignUpFragment extends Fragment {
     private TextInputEditText inputName, inputEmail, inputPassword, inputPhone;
     private Button signUp;
     private FirebaseAuth mAuth;
+//    private ProgressDialog progressDialog;
+//    private static  final int DELAY = 5000;
 
     @Nullable
     @Override
@@ -96,6 +100,7 @@ public class SignUpFragment extends Fragment {
                                 public void onComplete(Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         //redirect to login layout
+//                                        setProgressDialog();
                                         Toast.makeText(getActivity(), "Register Successfull", Toast.LENGTH_SHORT).show();
                                         resetFromdata();
                                     } else {
@@ -179,5 +184,16 @@ public class SignUpFragment extends Fragment {
             return true;
         }
     }
+
+//    private void setProgressDialog(){
+//        progressDialog = new ProgressDialog(getActivity());
+//        //show dialog
+//        progressDialog.show();
+//        progressDialog.setContentView(R.layout.layout_progress_dialog);
+//
+//        progressDialog.getWindow().setBackgroundDrawableResource(
+//                android.R.color.transparent
+//        );
+//    }
 
 }

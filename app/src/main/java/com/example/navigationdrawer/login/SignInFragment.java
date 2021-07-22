@@ -1,5 +1,6 @@
 package com.example.navigationdrawer.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.style.TtsSpan;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -37,7 +39,8 @@ public class SignInFragment extends Fragment {
     private TextView forgetPassword;
     private Button signIn;
     private FirebaseAuth mAuth;
-
+    private ProgressDialog progressDialog;
+    private static  final int DELAY = 5000;
 
     @Nullable
     @Override
@@ -87,7 +90,16 @@ public class SignInFragment extends Fragment {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user.isEmailVerified()) {
                                 //redirect to user profile
-                                startActivity(new Intent(getActivity(), MainActivity.class));
+                                setProgressDialog();
+                                //delay
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(new Intent(getActivity(), MainActivity.class));
+                                    }
+                                },DELAY);
+
                             } else {
                                 //send email
                                 user.sendEmailVerification();
@@ -109,4 +121,15 @@ public class SignInFragment extends Fragment {
         });
         return view;
     }
+
+    private void setProgressDialog(){
+        progressDialog = new ProgressDialog(getActivity());
+        //show dialog
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.layout_progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+    }
+
 }
