@@ -122,7 +122,7 @@ public class LoaiChi_ChiFragment extends Fragment {
                                 new DatePickerDialog.OnDateSetListener() {
                                     @Override
                                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                        dateUpdateLoaiChi.setText(dayOfMonth + "-" + month + "-" + year);
+                                        dateUpdateLoaiChi.setText(dayOfMonth + "-" +(month + 1)  + "-" + year);
                                     }
                                 }, nam, thang, ngay);
                         datePickerDialog.show();
@@ -220,7 +220,7 @@ public class LoaiChi_ChiFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                dateLoaiChi.setText(dayOfMonth + "-" + month + "-" + year);
+                                dateLoaiChi.setText(dayOfMonth + "-" + (month+1) + "-" + year);
                             }
                         }, nam, thang, ngay);
                 datePickerDialog.show();

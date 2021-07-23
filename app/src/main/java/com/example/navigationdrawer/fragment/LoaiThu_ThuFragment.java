@@ -125,7 +125,7 @@ public class LoaiThu_ThuFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                dateLoaiThu.setText(dayOfMonth + "-" + month + "-" + year);
+                                dateLoaiThu.setText(dayOfMonth + "-" + (month+1) + "-" + year);
                             }
                         }, nam, thang, ngay);
                 datePickerDialog.show();

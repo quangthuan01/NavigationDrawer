@@ -111,7 +111,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                                 new DatePickerDialog.OnDateSetListener() {
                                     @Override
                                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                        textDate.setText(dayOfMonth + "-" + month + "-" + year);
+                                        textDate.setText(dayOfMonth + "-" + (month+1) + "-" + year);
                                     }
                                 }, nam, thang, ngay);
                         datePickerDialog.show();
