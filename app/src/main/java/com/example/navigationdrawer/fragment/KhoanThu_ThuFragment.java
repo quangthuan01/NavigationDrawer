@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +28,10 @@ import android.widget.TextView;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.adapter.KhoanThuAdapter;
 import com.example.navigationdrawer.adapter.SpinnerKhoanThuAdapter;
+import com.example.navigationdrawer.model.KhoanChi;
 import com.example.navigationdrawer.model.KhoanThu;
 import com.example.navigationdrawer.model.LoaiThu;
+import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -59,16 +62,19 @@ public class KhoanThu_ThuFragment extends Fragment {
     private FloatingActionButton fabKhoanThu;
     private RecyclerView recyclerViewKhoanThu;
     private SpinnerKhoanThuAdapter spinnerKhoanThuAdapter;
-    private DatabaseReference DbRef;
+    private DatabaseReference DbRef,dataUser,dataMoney;
     private String select;
     private FirebaseUser firebaseUser;
     private String idUser;
+    private TextView textMoney, textName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_khoan_thu__thu, container, false);
         //Assign varible
+        textName = view.findViewById(R.id.textNameKhoanThu);
+        textMoney = view.findViewById(R.id.textMoneyKhoanThu);
         fabKhoanThu = view.findViewById(R.id.fabKhoanThu);
         recyclerViewKhoanThu = view.findViewById(R.id.recyclerViewKhoanThu);
         recyclerViewKhoanThu.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -76,12 +82,15 @@ public class KhoanThu_ThuFragment extends Fragment {
         //get userID
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
-
+        //getUserandMoney
+        getDataUserandMoney();
+        //thong bao
         notificationDiaLog = new Notification_DiaLog(getActivity());
+        //khoi tao arraylist
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
+        //khoi tao adapter
         spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList, getActivity());
-
         //create coletion
         DbRef = FirebaseDatabase.getInstance().getReference().child("KhoanThu");
         //get all data
@@ -96,6 +105,50 @@ public class KhoanThu_ThuFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void getDataUserandMoney(){
+        //get userID
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        idUser = firebaseUser.getUid();
+        dataUser = FirebaseDatabase.getInstance().getReference("Users");
+        dataUser.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    String name = user.name;
+                    textName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        dataMoney = FirebaseDatabase.getInstance().getReference("KhoanThu");
+        dataMoney.orderByChild("idUserKhoanThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                int total =0;
+                for (DataSnapshot KhoanThuDatasnaps : snapshot.getChildren()) {
+                    KhoanThu khoanThu = KhoanThuDatasnaps.getValue(KhoanThu.class);
+                    khoanThuList.add(khoanThu);
+                    total += khoanThu.getMoneyKhoanThu();
+                    String totalKhoanChi = String.valueOf(total);
+                    textMoney.setText(totalKhoanChi + " VND");
+                    Log.e("errorKhoanThu", totalKhoanChi);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void insertKhoanThu(int gravity) {

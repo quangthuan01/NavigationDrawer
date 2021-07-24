@@ -53,8 +53,7 @@ import java.util.UUID;
  */
 public class LoaiChi_ChiFragment extends Fragment {
     //Initialize varible
-    private BottomNavigationView navigationView;
-    private FloatingActionButton floatingActionButton;
+    private Button btn_AddLoaiChi;
     private Notification_DiaLog notificationDiaLog;
     private ListView listView;
     private LoaiChi loaiChiModel;
@@ -69,9 +68,7 @@ public class LoaiChi_ChiFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_loai_chi__chi, container, false);
         //Asssign varible
-        navigationView = view.findViewById(R.id.bottomnavigationView);
-        navigationView.setBackground(null);
-        floatingActionButton = view.findViewById(R.id.fabLoaiChi);
+        btn_AddLoaiChi = view.findViewById(R.id.fabLoaiChi);
         listView = view.findViewById(R.id.listViewLoaiChi);
 
         //get userID
@@ -86,7 +83,7 @@ public class LoaiChi_ChiFragment extends Fragment {
         //lay du lieu tu tren firebase ve app
         getDataFireBase();
         //the moi
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        btn_AddLoaiChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDiaLogInsert(Gravity.CENTER);

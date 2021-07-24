@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.example.navigationdrawer.adapter.KhoanChiAdapter;
 import com.example.navigationdrawer.adapter.SpinnerKhoanChiAdapter;
 import com.example.navigationdrawer.model.KhoanChi;
 import com.example.navigationdrawer.model.LoaiChi;
+import com.example.navigationdrawer.model.User;
 import com.example.navigationdrawer.notification.Notification_DiaLog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,21 +64,26 @@ public class KhoanChi_ChiFragment extends Fragment {
     private SpinnerKhoanChiAdapter spinnerKhoanChiAdapter;
     private ListView listViewKhoanChi;
     private FloatingActionButton fabKhoanChi;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference,dataUser,dataMoney;
     private String select;
     private Notification_DiaLog notificationDiaLog;
     private FirebaseUser firebaseUser;
     private String idUser;
+    private TextView textName, textMoney;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_khoan_chi__chi, container, false);
         //Assign varible
+
+        textName = view.findViewById(R.id.textNameKhoanChi);
+        textMoney = view.findViewById(R.id.textMoneyKhoanChi);
         khoanChiList = new ArrayList<>();
         loaiChiList = new ArrayList<>();
 
-
+        //getdataNameandMoney
+        getUserandMoney();
         //get userID
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
@@ -101,6 +108,48 @@ public class KhoanChi_ChiFragment extends Fragment {
         setOnItemClick();
 
         return view;
+    }
+
+    private void getUserandMoney(){
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        idUser = firebaseUser.getUid();
+        dataUser = FirebaseDatabase.getInstance().getReference("Users");
+        dataUser.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    String name = user.name;
+                    textName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        dataMoney = FirebaseDatabase.getInstance().getReference("KhoanChi");
+        dataMoney.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                int total =0;
+                for (DataSnapshot KhoanChiDatasnaps : snapshot.getChildren()) {
+                    KhoanChi khoanChi = KhoanChiDatasnaps.getValue(KhoanChi.class);
+                    khoanChiList.add(khoanChi);
+                    total += khoanChi.getMoneyKhoanChi();
+                    String totalKhoanChi = String.valueOf(total);
+                    textMoney.setText(totalKhoanChi + " VND");
+                    Log.e("errorKhoanChi", totalKhoanChi);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
     }
 
     private void setOnItemClick() {

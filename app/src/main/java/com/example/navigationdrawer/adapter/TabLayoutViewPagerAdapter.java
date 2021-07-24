@@ -17,7 +17,6 @@ public class TabLayoutViewPagerAdapter extends FragmentPagerAdapter {
         fragmentArrayList.add(fragment);
         //addString
         stringArrayList.add(s);
-
     }
 
     public TabLayoutViewPagerAdapter(@NonNull FragmentManager fm) {

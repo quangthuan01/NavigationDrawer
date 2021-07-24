@@ -48,7 +48,7 @@ import java.util.UUID;
  * create an instance of this fragment.
  */
 public class LoaiThu_ThuFragment extends Fragment {
-    private FloatingActionButton fabLoaiThu;
+    private Button fabLoaiThu;
     private List<LoaiThu> loaiThuList;
     private LoaiThu loaiThuModel;
     private LoaiThuAdapter loaiThuAdapter;
