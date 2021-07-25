@@ -17,6 +17,7 @@ import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.model.KhoanChi;
 import com.example.navigationdrawer.model.KhoanThu;
 import com.example.navigationdrawer.model.LoaiChi;
+import com.example.navigationdrawer.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,10 +35,10 @@ import java.util.List;
  */
 public class MoneyFragment extends Fragment {
 
-    private TextView textCash, textUsed, textReceived;
+    private TextView textCash, textUsed, textReceived, textNameMoney;
     private FirebaseUser user;
     private String idUser;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, dataUser;
     private KhoanChi khoanChiModel;
     private KhoanThu khoanThuModel;
     private List<KhoanThu> khoanThuList;
@@ -48,17 +49,35 @@ public class MoneyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_money, container, false);
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_money_mobie, container, false);
 
-        textCash = view.findViewById(R.id.textCashMoney);
-        textUsed = view.findViewById(R.id.textUsedMoney);
-        textReceived = view.findViewById(R.id.textReceivedMoney);
+        textCash = view.findViewById(R.id.textTotalMoney);
+        textUsed = view.findViewById(R.id.textTotalMoneyKhoanChi);
+        textReceived = view.findViewById(R.id.textTotalMoneyKhoanThu);
+        textNameMoney = view.findViewById(R.id.textNameMoney);
         khoanChiModel = new KhoanChi();
         khoanThuModel = new KhoanThu();
         khoanThuList = new ArrayList<>();
         khoanChiList = new ArrayList<>();
         user = FirebaseAuth.getInstance().getCurrentUser();
         idUser = user.getUid();
+        //get Name User
+        dataUser = FirebaseDatabase.getInstance().getReference("Users");
+        dataUser.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    String name = user.name;
+                    textNameMoney.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         //get all money khoan chi
         databaseReference = FirebaseDatabase.getInstance().getReference("KhoanChi");
         databaseReference.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {

@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cambriai"
             android:text="Nguyen Quang Thuan"
-            android:textColor="@color/white"
+            android:textColor="@color/bluedark_dark"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
