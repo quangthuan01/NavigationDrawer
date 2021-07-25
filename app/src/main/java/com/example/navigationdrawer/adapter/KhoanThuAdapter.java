@@ -78,6 +78,8 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 }
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                window.setAttributes(layoutParams);
                 //set click
                 dialog.setCancelable(false);
                 //setmau dialog bo vien

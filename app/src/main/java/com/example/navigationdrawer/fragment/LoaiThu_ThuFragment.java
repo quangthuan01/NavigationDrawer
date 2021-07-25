@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -48,7 +49,8 @@ import java.util.UUID;
  * create an instance of this fragment.
  */
 public class LoaiThu_ThuFragment extends Fragment {
-    private Button fabLoaiThu;
+
+    private FloatingActionButton fabLoaiThu;
     private List<LoaiThu> loaiThuList;
     private LoaiThu loaiThuModel;
     private LoaiThuAdapter loaiThuAdapter;
@@ -66,7 +68,8 @@ public class LoaiThu_ThuFragment extends Fragment {
         fabLoaiThu = view.findViewById(R.id.floatingActionButton);
         recyclerView = view.findViewById(R.id.recyclerViewLoaiThu);
         notificationDiaLog = new Notification_DiaLog(getActivity());
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //get userID
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

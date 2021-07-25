@@ -9,6 +9,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -68,6 +70,17 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
                 LoaiThu loaiThu = data.get(position);
                 String _id = loaiThu.getIdLoaiThu();
                 Dialog dialog = new Dialog(v.getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_update_chi_khoanchi);
+                Window window = dialog.getWindow();
+                //check
+                if (window == null) {
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                window.setAttributes(layoutParams);
                 //set click
                 dialog.setCancelable(false);
                 //setmau dialog bo vien

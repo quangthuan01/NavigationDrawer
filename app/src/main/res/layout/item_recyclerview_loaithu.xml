@@ -1,79 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_container_item_recyclerview"
+<LinearLayout android:id="@+id/layout_container_item_recyclerview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/background_item_recyclerview">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:weightSum="5">
+        android:layout_margin="10dp">
 
-        <TextView
-            android:layout_width="40dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Types"
-            android:textColor="@color/bluesky"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/item_textLoaiThu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="30dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".67">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="5">
+            <TextView
+                android:id="@+id/item_textLoaiThu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:text="Types"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="40dp"
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Date"
-            android:textColor="@color/bluesky"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/item_textDateLoaiThu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="30dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_textLoaiChi"
-            app:layout_constraintVertical_bias="0.02" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".3">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/item_textDateLoaiThu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="3-10-2021"
+                android:textColor="@color/dark"
+                android:textSize="18sp" />
 
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

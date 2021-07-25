@@ -76,7 +76,6 @@ public class KhoanChi_ChiFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_khoan_chi__chi, container, false);
         //Assign varible
-
         textName = view.findViewById(R.id.textNameKhoanChi);
         textMoney = view.findViewById(R.id.textMoneyKhoanChi);
         khoanChiList = new ArrayList<>();
@@ -159,8 +158,19 @@ public class KhoanChi_ChiFragment extends Fragment {
                 khoanChiModel = (KhoanChi) khoanChiAdapter.getItem(position);
                 String _id = khoanChiModel.getIdKhoanChi();
                 Dialog dialog = new Dialog(getActivity());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_update_chi_khoanchi);
+                Window window = dialog.getWindow();
+                //check
+                if (window == null) {
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                window.setAttributes(layoutParams);
 
                 AutoCompleteTextView inputMoney = (AutoCompleteTextView) dialog.findViewById(R.id.input_Update_Text_KhoanChi_DiaLog);
                 AutoCompleteTextView inputOldTitle = (AutoCompleteTextView) dialog.findViewById(R.id.input_Update_OldTitle_KhoanChi_DiaLog);
@@ -171,7 +181,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog__KhoanChi);
 
                 inputOldTitle.setText(khoanChiModel.getOldKhoanChi());
-                inputMoney.setText(khoanChiModel.getMoneyKhoanChi());
+                inputMoney.setText(String.valueOf(khoanChiModel.getMoneyKhoanChi()));
                 textDate.setText(khoanChiModel.getDateKhoanChi());
                 textSpn.setText(khoanChiModel.getTitleKhoanChi());
 
@@ -215,7 +225,6 @@ public class KhoanChi_ChiFragment extends Fragment {
                     public void onClick(View v) {
                         deleteLoaiChi(_id);
                         dialog.dismiss();
-                        notificationDiaLog.showSuccessful(Gravity.CENTER);
                     }
                 });
                 dialog.show();

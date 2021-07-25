@@ -157,11 +157,11 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="#004c40"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="40dp"
             app:cardElevation="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,19 +171,18 @@
             app:layout_constraintVertical_bias=".99"
             app:layout_constraintWidth_percent=".2">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/view_button_loaichi"
-                android:text="Add"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:backgroundTint="#004c40"
+                android:src="@drawable/ic_add"
+                app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

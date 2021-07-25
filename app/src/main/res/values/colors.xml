@@ -18,4 +18,6 @@
     <color name="bluedark_dark">#00446d</color>
     <color name="primary">#7835ff</color>
     <color name="primary_dark">#8327cb</color>
+    <color name="green_sky">#58ff90</color>
+    <color name="pink">#ffb7c0</color>
 </resources>

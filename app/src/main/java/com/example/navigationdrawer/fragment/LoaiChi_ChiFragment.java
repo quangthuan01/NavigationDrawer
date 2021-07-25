@@ -53,7 +53,7 @@ import java.util.UUID;
  */
 public class LoaiChi_ChiFragment extends Fragment {
     //Initialize varible
-    private Button btn_AddLoaiChi;
+    private FloatingActionButton btn_AddLoaiChi;
     private Notification_DiaLog notificationDiaLog;
     private ListView listView;
     private LoaiChi loaiChiModel;
@@ -97,8 +97,20 @@ public class LoaiChi_ChiFragment extends Fragment {
                 String _idLoaiChi = loaiChiModel.getIdLoaiChi();
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_update_chi_loaichi);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
+                dialog.setContentView(R.layout.dialog_update_chi_khoanchi);
+                Window window = dialog.getWindow();
+                //check
+                if (window == null) {
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                window.setAttributes(layoutParams);
+
+                dialog.setContentView(R.layout.dialog_update_chi_loaichi);
                 EditText inputUpdateLoaiChi = (EditText) dialog.findViewById(R.id.input_Update_TextLoaiChi_DiaLog);
                 TextView dateUpdateLoaiChi = (TextView) dialog.findViewById(R.id.text_Update_DateLoaiChi_DiaLog);
                 Button btn_update = (Button) dialog.findViewById(R.id.btn_Update_Dialog_LoaiChi);

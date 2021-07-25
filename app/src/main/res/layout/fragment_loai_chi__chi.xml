@@ -113,12 +113,12 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_dark"
-            android:elevation="30dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="30dp"
+            android:elevation="40dp"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
@@ -126,17 +126,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias=".99">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabLoaiChi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@drawable/view_button"
-                android:text="Add"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:backgroundTint="@color/primary_dark"
+                android:src="@drawable/ic_add"
+                app:tint="@color/white"/>
 
         </androidx.cardview.widget.CardView>
         <ListView

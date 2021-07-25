@@ -1,123 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@drawable/background_save_dialog_loaichi"
-    android:orientation="vertical">
+    android:elevation="40dp">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:layout_margin="3dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent=".9">
 
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Category"
-            android:textColor="@color/bluesky"
-            android:textSize="10sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/item_TheLoaiKhoanChi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
+            <TextView
+                android:id="@+id/item_TheLoaiKhoanChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Types"
+                android:textColor="@color/dark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Types"
-            android:textColor="@color/bluesky"
-            android:textSize="10sp" />
+            <TextView
+                android:id="@+id/item_textSoTienChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50000000"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".92"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-        <TextView
-            android:id="@+id/item_OldTheLoaiKhoanChi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/item_OldTheLoaiKhoanChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".08"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_TheLoaiKhoanChi"
+                app:layout_constraintVertical_bias=".1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+            <TextView
+                android:id="@+id/item_textDateKhoanChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5-4-2020"
+                android:textColor="@color/yellow"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".92"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_textSoTienChi"
+                app:layout_constraintVertical_bias=".1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Money"
-            android:textColor="@color/bluesky"
-            android:textSize="10sp" />
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/item_textSoTienChi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
 
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Date"
-            android:textColor="@color/bluesky"
-            android:textSize="10sp" />
 
-        <TextView
-            android:id="@+id/item_textDateKhoanChi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-</LinearLayout>
+
+
