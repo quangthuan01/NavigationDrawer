@@ -20,4 +20,6 @@
     <color name="primary_dark">#8327cb</color>
     <color name="green_sky">#58ff90</color>
     <color name="pink">#ffb7c0</color>
+    <color name="rose_dark">#5d4e9f</color>
+    <color name="rose">#d12556</color>
 </resources>
