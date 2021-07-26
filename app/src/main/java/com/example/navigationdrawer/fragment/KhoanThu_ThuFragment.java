@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,6 +46,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,7 +81,6 @@ public class KhoanThu_ThuFragment extends Fragment {
         fabKhoanThu = view.findViewById(R.id.fabKhoanThu);
         recyclerViewKhoanThu = view.findViewById(R.id.recyclerViewKhoanThu);
         recyclerViewKhoanThu.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         //get userID
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
@@ -89,6 +91,23 @@ public class KhoanThu_ThuFragment extends Fragment {
         //khoi tao arraylist
         khoanThuList = new ArrayList<>();
         loaiThuList = new ArrayList<>();
+        //sap xep value
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Collections.sort(khoanThuList, new Comparator<KhoanThu>() {
+//                    @Override
+//                    public int compare(KhoanThu o1, KhoanThu o2) {
+//                        return o1.getDateKhoanThu().compareToIgnoreCase(o2.getDateKhoanThu());
+//                    }
+//                });
+//            }
+//        },5000);
+
+//      Collections.reverse(khoanThuList);
+
         //khoi tao adapter
         spinnerKhoanThuAdapter = new SpinnerKhoanThuAdapter(loaiThuList, getActivity());
         //create coletion
@@ -100,7 +119,7 @@ public class KhoanThu_ThuFragment extends Fragment {
         fabKhoanThu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertKhoanThu(Gravity.TOP);
+                insertKhoanThu(Gravity.CENTER);
             }
         });
 

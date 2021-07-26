@@ -99,7 +99,7 @@ public class KhoanChi_ChiFragment extends Fragment {
         fabKhoanChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertKhoanChi(Gravity.TOP);
+                insertKhoanChi(Gravity.CENTER);
             }
         });
 

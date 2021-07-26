@@ -49,31 +49,31 @@ public class ThongKeFragment extends Fragment {
 
         khoanChiList = new ArrayList<>();
         khoanThuList = new ArrayList<>();
-
-        //get data khoan thu
-        dbReferenceKhoanThu.orderByChild("idUserKhoanThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
-
-            }
-        });
-        //get data khoan chi
-        dbReferenceKhoanChi.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
-
-            }
-        });
+//
+//        //get data khoan thu
+//        dbReferenceKhoanThu.orderByChild("idUserKhoanThu").equalTo(idUser).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull  DatabaseError error) {
+//
+//            }
+//        });
+//        //get data khoan chi
+//        dbReferenceKhoanChi.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull  DatabaseError error) {
+//
+//            }
+//        });
         //demo thong ke
         ArrayList<BarEntry> visitors = new ArrayList<>();
         visitors.add(new BarEntry(1, 1000000));

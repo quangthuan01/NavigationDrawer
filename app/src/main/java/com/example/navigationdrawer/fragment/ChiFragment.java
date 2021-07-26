@@ -40,6 +40,7 @@ public class ChiFragment extends Fragment {
         viewPager.setAdapter(tabLayoutViewPagerAdapter);
         //connect tablayout with viewPager
         tabLayout.setupWithViewPager(viewPager);
+
         return view;
     }
 }
