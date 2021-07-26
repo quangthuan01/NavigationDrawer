@@ -96,6 +96,7 @@ public class LoaiChi_ChiFragment extends Fragment {
                 loaiChiModel = (LoaiChi) loaiChiAdapter.getItem(position);
                 String _idLoaiChi = loaiChiModel.getIdLoaiChi();
                 final Dialog dialog = new Dialog(getActivity());
+                dialog.getWindow().setWindowAnimations(R.style.AnimationDownUpDialog);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
@@ -194,6 +195,7 @@ public class LoaiChi_ChiFragment extends Fragment {
 
     private void showDiaLogInsert(int gravity) {
         final Dialog dialog = new Dialog(getActivity());
+        dialog.getWindow().setWindowAnimations(R.style.AnimationDownUpDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_chi_loaichi);
         Window window = dialog.getWindow();

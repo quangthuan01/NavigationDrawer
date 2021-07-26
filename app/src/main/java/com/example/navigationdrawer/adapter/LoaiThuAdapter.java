@@ -69,7 +69,7 @@ public class LoaiThuAdapter extends RecyclerView.Adapter<LoaiThuAdapter.MyViewHo
             public void onClick(View v) {
                 LoaiThu loaiThu = data.get(position);
                 String _id = loaiThu.getIdLoaiThu();
-                Dialog dialog = new Dialog(v.getContext());
+                Dialog dialog = new Dialog(v.getContext(),R.style.DialogAnimation);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_update_chi_khoanchi);
                 Window window = dialog.getWindow();

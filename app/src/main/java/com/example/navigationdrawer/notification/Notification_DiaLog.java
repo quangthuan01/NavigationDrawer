@@ -23,6 +23,7 @@ public class Notification_DiaLog {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_successful);
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialog);
         Window window = dialog.getWindow();
         //check
         if (window == null) {
@@ -54,6 +55,7 @@ public class Notification_DiaLog {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_warning);
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialog);
         Window window = dialog.getWindow();
         //check
         if (window == null) {
@@ -84,6 +86,7 @@ public class Notification_DiaLog {
     public void showError(int gravity) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialog);
         dialog.setContentView(R.layout.layout_dialog_failed);
         Window window = dialog.getWindow();
         //check

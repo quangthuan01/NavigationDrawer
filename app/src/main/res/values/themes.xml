@@ -21,5 +21,25 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    //animation dialog left -->> right
+    <style name="DialogAnimation">
+    <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+    <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    //animation dialog zoom
+    <style name="AnimationForDialog">
+
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+
+    </style>
+    //animation dialog down-->> up
+    <style name="AnimationDownUpDialog">
+
+        <item name="android:windowEnterAnimation">@anim/slide_down_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_animation</item>
+
+    </style>
 
 </resources>

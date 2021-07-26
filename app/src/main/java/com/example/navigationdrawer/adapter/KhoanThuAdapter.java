@@ -69,7 +69,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 KhoanThu khoanThu1 = data.get(position);
                 String _id = khoanThu1.getIdKhoanThu();
 
-                Dialog dialog = new Dialog(v.getContext());
+                Dialog dialog = new Dialog(v.getContext(), R.style.DialogAnimation);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 Window window = dialog.getWindow();
                 //check

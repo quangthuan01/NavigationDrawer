@@ -93,6 +93,7 @@ public class LoaiThu_ThuFragment extends Fragment {
 
     private void addLoaiThu(int gravity) {
         final Dialog dialog = new Dialog(getActivity());
+        dialog.getWindow().setWindowAnimations(R.style.AnimationDownUpDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_thu_loaithu);
         Window window = dialog.getWindow();

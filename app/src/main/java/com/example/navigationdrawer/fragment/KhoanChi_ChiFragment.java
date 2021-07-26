@@ -158,6 +158,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                 khoanChiModel = (KhoanChi) khoanChiAdapter.getItem(position);
                 String _id = khoanChiModel.getIdKhoanChi();
                 Dialog dialog = new Dialog(getActivity());
+                dialog.getWindow().setWindowAnimations(R.style.AnimationDownUpDialog);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
@@ -258,6 +259,7 @@ public class KhoanChi_ChiFragment extends Fragment {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setWindowAnimations(R.style.AnimationDownUpDialog);
         dialog.setContentView(R.layout.layout_bottom_sheet_khoanchi);
         Window window = dialog.getWindow();
         //check
