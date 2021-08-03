@@ -20,9 +20,10 @@ import com.google.android.material.tabs.TabLayout;
  * create an instance of this fragment.
  */
 public class ChiFragment extends Fragment {
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    TabLayoutViewPagerAdapter tabLayoutViewPagerAdapter;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabLayoutViewPagerAdapter tabLayoutViewPagerAdapter;
 
     @Nullable
     @Override
@@ -32,7 +33,7 @@ public class ChiFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout_Chi);
         viewPager = view.findViewById(R.id.view_pagerChi);
 
-        tabLayoutViewPagerAdapter = new TabLayoutViewPagerAdapter(getActivity().getSupportFragmentManager());
+        tabLayoutViewPagerAdapter = new TabLayoutViewPagerAdapter(getParentFragmentManager());
         //add fragment
         tabLayoutViewPagerAdapter.AddFragment(new KhoanChi_ChiFragment(), "Expenditures");
         tabLayoutViewPagerAdapter.AddFragment(new LoaiChi_ChiFragment(), "Spending money");

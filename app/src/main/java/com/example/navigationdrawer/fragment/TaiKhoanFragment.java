@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -99,9 +100,17 @@ public class TaiKhoanFragment extends Fragment {
         layoutParams.gravity = gravity;
         window.setAttributes(layoutParams);
         //check
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         Button btn_exit = (Button) dialog.findViewById(R.id.btn_Exit);
         Button btn_logout = (Button) dialog.findViewById(R.id.btn_LogOut);
+        ImageView image_Close_Account = (ImageView) dialog.findViewById(R.id.image_Close_Account);
+
+        image_Close_Account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -90,7 +90,8 @@ public class MoneyFragment extends Fragment {
                     khoanChiList.add(khoanChi);
                     title += khoanChi.getMoneyKhoanChi();
                     totlatvalue1[0] = String.valueOf(title);
-                    textUsed.setText(totlatvalue1[0] + " VND");
+                    Double d = Double.valueOf(totlatvalue1[0]);
+                    textUsed.setText(String.format("%,.1f",d) + " $");
                     Log.e("error1", totlatvalue1[0]);
                 }
             }
@@ -111,7 +112,8 @@ public class MoneyFragment extends Fragment {
                     khoanThuList.add(khoanThu);
                     title += khoanThu.getMoneyKhoanThu();
                     totlatvalue[0] = String.valueOf(title);
-                    textReceived.setText(totlatvalue[0] + " VND");
+                    Double d = Double.valueOf(totlatvalue[0]);
+                    textReceived.setText(String.format("%,.1f",d) + " $");
                     Log.e("error", totlatvalue[0]);
                 }
             }
@@ -130,7 +132,8 @@ public class MoneyFragment extends Fragment {
                 Log.e("errorlist1", String.valueOf(khoanThuList.size()));
                 int cash = Integer.parseInt(totlatvalue[0]) - Integer.parseInt(totlatvalue1[0]);
                 String cashs = String.valueOf(cash);
-                textCash.setText(cashs + " VND");
+                Double d = Double.valueOf(cashs);
+                textCash.setText(String.format("%,.1f",d) + " $");
             }
         }, 5000);
         return view;

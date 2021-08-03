@@ -59,9 +59,10 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
         KhoanThu khoanThu = data.get(position);
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idUser = firebaseUser.getUid();
+        Double d = Double.valueOf(khoanThu.getMoneyKhoanThu());
         holder.inputTitle.setText(khoanThu.getTitleKhoanThu());
         holder.textDetail.setText(khoanThu.getOldTitle());
-        holder.inputMoney.setText(khoanThu.getMoneyKhoanThu() + " VND");
+        holder.inputMoney.setText(String.format("%,.1f", d) + " $");
         holder.textDate.setText(khoanThu.getDateKhoanThu());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +95,11 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 ImageView imageClose = (ImageView) dialog.findViewById(R.id.image_close_Khoanthu);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog_KhoanThu);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog_KhoanThu);
-                int money = khoanThu1.getMoneyKhoanThu();
-                String moneyST = String.valueOf(money);
+
+                Double moneyST = Double.valueOf(khoanThu1.getMoneyKhoanThu());
                 textTitle.setText(khoanThu1.getTitleKhoanThu());
                 inputTypes.setText(khoanThu1.getOldTitle());
-                inputMoney.setText(moneyST);
+                inputMoney.setText(String.format("%,.1f", moneyST) + " $");
                 textDate.setText(khoanThu1.getDateKhoanThu());
 
 
@@ -113,7 +114,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                                 new DatePickerDialog.OnDateSetListener() {
                                     @Override
                                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                        textDate.setText(dayOfMonth + "-" + (month+1) + "-" + year);
+                                        textDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
                                     }
                                 }, nam, thang, ngay);
                         datePickerDialog.show();
@@ -132,10 +133,23 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                         String _types = inputTypes.getText().toString();
                         int _money = Integer.parseInt(inputMoney.getText().toString());
                         String _textdate = textDate.getText().toString();
-                        upDateData(_id, _title, _types, _money, _textdate, idUser);
-                        dialog.dismiss();
-                        Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
-                        notificationDiaLog.showSuccessful(Gravity.CENTER);
+
+                        if (_money < 5) {
+                            inputMoney.requestFocus();
+                            inputMoney.setError("Minimum is 5.0$");
+                            return;
+                        } else if (_money > 10000000) {
+                            inputMoney.requestFocus();
+                            inputMoney.setError("Maximum is 10,000,000.0$");
+                            return;
+                        } else {
+                            upDateData(_id, _title, _types, _money, _textdate, idUser);
+                            dialog.dismiss();
+                            Notification_DiaLog notificationDiaLog = new Notification_DiaLog(context);
+                            notificationDiaLog.showSuccessful(Gravity.CENTER);
+                        }
+
+
                     }
                 });
                 btn_Delete.setOnClickListener(new View.OnClickListener() {

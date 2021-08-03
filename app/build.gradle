@@ -56,8 +56,7 @@ dependencies {
     implementation "com.flaviofaria:kenburnsview:1.0.7"
     //Smooth bottom Bar
     implementation "com.github.ibrahimsn98:SmoothBottomBar:1.7.3"
-
-
-
-
+    //animation
 }
+
+

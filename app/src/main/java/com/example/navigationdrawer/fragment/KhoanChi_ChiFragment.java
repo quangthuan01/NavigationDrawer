@@ -64,7 +64,7 @@ public class KhoanChi_ChiFragment extends Fragment {
     private SpinnerKhoanChiAdapter spinnerKhoanChiAdapter;
     private ListView listViewKhoanChi;
     private FloatingActionButton fabKhoanChi;
-    private DatabaseReference databaseReference,dataUser,dataMoney;
+    private DatabaseReference databaseReference, dataUser, dataMoney;
     private String select;
     private Notification_DiaLog notificationDiaLog;
     private FirebaseUser firebaseUser;
@@ -109,13 +109,13 @@ public class KhoanChi_ChiFragment extends Fragment {
         return view;
     }
 
-    private void getUserandMoney(){
+    private void getUserandMoney() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idUser = firebaseUser.getUid();
         dataUser = FirebaseDatabase.getInstance().getReference("Users");
         dataUser.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
                 if (user != null) {
                     String name = user.name;
@@ -124,7 +124,7 @@ public class KhoanChi_ChiFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -132,20 +132,21 @@ public class KhoanChi_ChiFragment extends Fragment {
         dataMoney = FirebaseDatabase.getInstance().getReference("KhoanChi");
         dataMoney.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
-                int total =0;
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int total = 0;
                 for (DataSnapshot KhoanChiDatasnaps : snapshot.getChildren()) {
                     KhoanChi khoanChi = KhoanChiDatasnaps.getValue(KhoanChi.class);
                     khoanChiList.add(khoanChi);
                     total += khoanChi.getMoneyKhoanChi();
                     String totalKhoanChi = String.valueOf(total);
-                    textMoney.setText(totalKhoanChi + " VND");
+                    Double d = Double.valueOf(totalKhoanChi);
+                    textMoney.setText(String.format("%,.1f", d) + " $");
                     Log.e("errorKhoanChi", totalKhoanChi);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -180,10 +181,11 @@ public class KhoanChi_ChiFragment extends Fragment {
                 TextView textSpn = (TextView) dialog.findViewById(R.id.textspinnerUpdateKhoanChi);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog__KhoanChi);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog__KhoanChi);
-
+                Double d = Double.valueOf(khoanChiModel.getMoneyKhoanChi());
                 inputOldTitle.setText(khoanChiModel.getOldKhoanChi());
-                inputMoney.setText(String.valueOf(khoanChiModel.getMoneyKhoanChi()));
+                inputMoney.setText(String.format("%,.1f", d) + " $");
                 textDate.setText(khoanChiModel.getDateKhoanChi());
+//                editText_amount.setText(String.format("%,.2f",amount));
                 textSpn.setText(khoanChiModel.getTitleKhoanChi());
 
                 textDate.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +199,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                                 new DatePickerDialog.OnDateSetListener() {
                                     @Override
                                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                        textDate.setText(dayOfMonth + "-" + (month+1) + "-" + year);
+                                        textDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
                                     }
                                 }, nam, thang, ngay);
                         datePickerDialog.show();
@@ -216,9 +218,20 @@ public class KhoanChi_ChiFragment extends Fragment {
                         String _textdate = textDate.getText().toString();
                         String _title = textSpn.getText().toString();
                         String _oldtitle = inputOldTitle.getText().toString();
-                        upDateData(_id, _title, _oldtitle, _money, _textdate, idUser);
-                        dialog.dismiss();
-                        notificationDiaLog.showSuccessful(Gravity.CENTER);
+
+                        if (_money < 5) {
+                            inputMoney.requestFocus();
+                            inputMoney.setError("Minimum is 5.0$");
+                            return;
+                        } else if (_money > 10000000) {
+                            inputMoney.requestFocus();
+                            inputMoney.setError("Maximum is 10,000,000.0$");
+                            return;
+                        } else {
+                            upDateData(_id, _title, _oldtitle, _money, _textdate, idUser);
+                            dialog.dismiss();
+                            notificationDiaLog.showSuccessful(Gravity.CENTER);
+                        }
                     }
                 });
                 btn_Delete.setOnClickListener(new View.OnClickListener() {
@@ -323,7 +336,7 @@ public class KhoanChi_ChiFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                dateKhoanChi.setText(dayOfMonth + "-" + (month+1) + "-" + year);
+                                dateKhoanChi.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
                             }
                         }, nam, thang, ngay);
                 datePickerDialog.show();
@@ -350,11 +363,17 @@ public class KhoanChi_ChiFragment extends Fragment {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     textTitle.requestFocus();
                     return;
-                } //else if () {
-//                    notificationDiaLog.showError(Gravity.CENTER);
-//                    textMoney.requestFocus();
-//                    return;//                }
-                else if (_date.isEmpty()) {
+                }else if (_money < 5) {
+                    notificationDiaLog.showError(Gravity.CENTER);
+                    textMoney.requestFocus();
+                    textMoney.setError("Minimum is 5.0$!");
+                    return;
+                } else if (_money > 10000000) {
+                    notificationDiaLog.showError(Gravity.CENTER);
+                    textMoney.requestFocus();
+                    textMoney.setError("Maximum is 10,000,000.0$");
+                    return;
+                } else if (_date.isEmpty()) {
                     notificationDiaLog.showWarning(Gravity.CENTER);
                     dateKhoanChi.requestFocus();
                     return;
@@ -370,8 +389,6 @@ public class KhoanChi_ChiFragment extends Fragment {
     }
 
     private void getAllDataFireBase() {
-        //orderByChild ("idUser"). equalTo ("02")
-        // get data to fire ->> app
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("KhoanChi");
         databaseReference.orderByChild("idUserKhoanChi").equalTo(idUser).addValueEventListener(new ValueEventListener() {
             @Override

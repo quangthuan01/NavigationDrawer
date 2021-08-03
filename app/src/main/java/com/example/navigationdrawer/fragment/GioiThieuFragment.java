@@ -26,6 +26,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class GioiThieuFragment extends Fragment {
+
     private ViewPager2 locationViewPager2;
     private List<GioiThieu> gioiThieus;
     private GioiThieu gioiThieuEiffelTower;

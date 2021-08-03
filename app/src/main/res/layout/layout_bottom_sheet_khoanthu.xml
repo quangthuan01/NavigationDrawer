@@ -2,90 +2,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="16dp"
     android:background="@drawable/bottom_sheet_background"
-    >
-        <TextView
-            android:background="@drawable/background_textview_dialog_loaichi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Extra Revenue"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:textColor="@color/dark"
-            />
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_textview_dialog_loaichi"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Extra Revenue"
+        android:textColor="@color/dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/light_white"/>
+        android:background="@color/light_white" />
 
     <Spinner
         android:id="@+id/spnKhoanThu"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusTopStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopEnd="10dp"
-        android:hint="Title ?"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_margin="10dp"
+        android:hint="Types">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/dark"
-            android:inputType="text"
             android:id="@+id/inputTitleKhoanThu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:textColor="@color/dark" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilMoney"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusTopStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusTopEnd="10dp"
-        android:hint="Money ?"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_margin="10dp"
+        android:hint="Money">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/dark"
-            android:inputType="number"
             android:id="@+id/inputMoneyKhoanThu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:textColor="@color/dark" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:background="@drawable/background_textview_khoanthu"
         android:id="@+id/textDateKhoanThu"
-        android:padding="15dp"
-        android:text="Choose a date!"
-        android:drawableRight="@drawable/ic_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_textview_khoanthu"
+        android:drawableRight="@drawable/ic_time"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="Choose a date!" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        >
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_cancelKhoanThu"
@@ -93,14 +88,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:fontFamily="@font/cambriai"
             android:alpha="1"
             android:background="@drawable/background_cancel_dialog_loaichi"
+            android:fontFamily="@font/cambriai"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize="16sp" />
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_saveKhoanThu"
@@ -109,12 +104,12 @@
             android:layout_weight="1"
             android:background="@drawable/background_save_dialog_loaichi"
             android:backgroundTint="@null"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="Save"
             android:fontFamily="@font/cambriai"
+            android:text="Save"
             android:textAllCaps="false"
-            android:textSize="16sp" />
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>
