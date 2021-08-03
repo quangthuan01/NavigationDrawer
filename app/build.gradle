@@ -57,6 +57,7 @@ dependencies {
     //Smooth bottom Bar
     implementation "com.github.ibrahimsn98:SmoothBottomBar:1.7.3"
     //animation
+
 }
 
 

@@ -22,4 +22,5 @@
     <color name="pink">#ffb7c0</color>
     <color name="rose_dark">#5d4e9f</color>
     <color name="rose">#d12556</color>
+    <color name="tran">#23FFFFFF</color>
 </resources>

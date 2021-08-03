@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chip_Khoanchi"
+        android:icon="@drawable/ic_show_chart"
+        android:title="Expense"
+     />
+    <item
+        android:id="@+id/chip_khoanthu"
+        android:icon="@drawable/ic_bar_chart"
+        android:title="Income"
+    />
+
+</menu>
