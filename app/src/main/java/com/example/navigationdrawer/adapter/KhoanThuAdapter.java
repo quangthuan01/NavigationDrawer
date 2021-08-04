@@ -96,10 +96,11 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.MyView
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog_KhoanThu);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog_KhoanThu);
 
-                Double moneyST = Double.valueOf(khoanThu1.getMoneyKhoanThu());
+//                Double moneyST = Double.valueOf(khoanThu1.getMoneyKhoanThu());
+                String  s = String.valueOf(khoanThu1.getMoneyKhoanThu());
                 textTitle.setText(khoanThu1.getTitleKhoanThu());
                 inputTypes.setText(khoanThu1.getOldTitle());
-                inputMoney.setText(String.format("%,.1f", moneyST) + " $");
+                inputMoney.setText(s);
                 textDate.setText(khoanThu1.getDateKhoanThu());
 
 

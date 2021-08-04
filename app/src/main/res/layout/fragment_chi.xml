@@ -21,8 +21,8 @@
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicator="@drawable/tab_indicator"/>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pagerChi"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager2Chi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>

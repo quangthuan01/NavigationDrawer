@@ -181,9 +181,9 @@ public class KhoanChi_ChiFragment extends Fragment {
                 TextView textSpn = (TextView) dialog.findViewById(R.id.textspinnerUpdateKhoanChi);
                 Button btn_Update = (Button) dialog.findViewById(R.id.btn_Update_Dialog__KhoanChi);
                 Button btn_Delete = (Button) dialog.findViewById(R.id.btn_Delete_Dialog__KhoanChi);
-                Double d = Double.valueOf(khoanChiModel.getMoneyKhoanChi());
+                String  s = String.valueOf(khoanChiModel.getMoneyKhoanChi());
                 inputOldTitle.setText(khoanChiModel.getOldKhoanChi());
-                inputMoney.setText(String.format("%,.1f", d) + " $");
+                inputMoney.setText(s);
                 textDate.setText(khoanChiModel.getDateKhoanChi());
 //                editText_amount.setText(String.format("%,.2f",amount));
                 textSpn.setText(khoanChiModel.getTitleKhoanChi());
