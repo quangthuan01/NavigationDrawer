@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     android:background="@color/light_white">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        app:backgroundColor="#004d40"
         app:layout_constraintVertical_bias="1"
+        app:iconTint="@color/white"
+        app:iconTintActive="@color/white"
+        app:indicatorColor="@color/tran"
+        app:indicatorRadius="12dp"
+        app:itemPadding="10dp"
+        app:textSize="16sp"
+        app:textColor="@color/white"
+        app:sideMargins="10dp"
+        app:duration="500"
+        app:iconSize="30dp"
         app:menu="@menu/item_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
