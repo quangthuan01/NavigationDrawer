@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_ThongKe_KhoanChi extends Fragment {
+public class Fragment_ThongKe_KhoanChi_LineChart extends Fragment {
     private LineChart lineChart;
     private List<KhoanChi> khoanChiList;
     private DatabaseReference dbReferenceKhoanChi;

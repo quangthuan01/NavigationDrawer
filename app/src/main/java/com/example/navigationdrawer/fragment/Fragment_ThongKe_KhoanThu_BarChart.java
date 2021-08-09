@@ -34,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_ThongKe_KhoanThu extends Fragment {
+public class Fragment_ThongKe_KhoanThu_BarChart extends Fragment {
 
     private BarChart barChart;
     private List<KhoanThu> khoanThuList;

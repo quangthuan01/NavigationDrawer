@@ -5,12 +5,11 @@
     <item
         android:id="@+id/chip_Khoanchi"
         android:icon="@drawable/ic_show_chart"
-        android:title="Expense"
+        android:title="Expense LineChart"
      />
     <item
         android:id="@+id/chip_khoanthu"
         android:icon="@drawable/ic_bar_chart"
-        android:title="Income"
+        android:title="Income BarChart"
     />
-
 </menu>

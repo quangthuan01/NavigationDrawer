@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.navigationdrawer.R;
@@ -29,17 +27,17 @@ public class ThongKeFragment extends Fragment {
 
         smoothBottomBar = view.findViewById(R.id.bottomBarThongke);
 
-        replace(new Fragment_ThongKe_KhoanChi())    ;
+        replace(new Fragment_ThongKe_KhoanChi_LineChart())    ;
         smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelect(int i) {
                 switch (i) {
 
                     case 0:
-                        replace(new Fragment_ThongKe_KhoanChi());
+                        replace(new Fragment_ThongKe_KhoanChi_LineChart());
                         break;
                     case 1:
-                        replace(new Fragment_ThongKe_KhoanThu());
+                        replace(new Fragment_ThongKe_KhoanThu_BarChart());
                         break;
                 }
             }
