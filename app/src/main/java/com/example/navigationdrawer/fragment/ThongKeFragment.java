@@ -1,6 +1,9 @@
 package com.example.navigationdrawer.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.navigationdrawer.R;
 
+import me.ibrahimsn.lib.OnItemReselectedListener;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -30,9 +34,8 @@ public class ThongKeFragment extends Fragment {
         replace(new Fragment_ThongKe_KhoanChi_LineChart())    ;
         smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public void onItemSelect(int i) {
-                switch (i) {
-
+            public boolean onItemSelect(int i) {
+                switch (i){
                     case 0:
                         replace(new Fragment_ThongKe_KhoanChi_LineChart());
                         break;
@@ -40,8 +43,24 @@ public class ThongKeFragment extends Fragment {
                         replace(new Fragment_ThongKe_KhoanThu_BarChart());
                         break;
                 }
+                return false;
             }
         });
+
+        smoothBottomBar.setOnItemReselectedListener(new OnItemReselectedListener() {
+            @Override
+            public void onItemReselect(int i) {
+                switch (i){
+                    case 0:
+                        Log.d(TAG, "onItemReselect: 0");
+                        break;
+                    case 1:
+                        Log.d(TAG, "onItemReselect: 1");
+                        break;
+                }
+            }
+        });
+
         return view;
     }
 

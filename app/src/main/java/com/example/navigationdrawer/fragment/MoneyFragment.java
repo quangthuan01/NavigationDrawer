@@ -63,6 +63,7 @@ public class MoneyFragment extends Fragment {
         idUser = user.getUid();
         //get Name User
         dataUser = FirebaseDatabase.getInstance().getReference("Users");
+        Log.d("UID FIREBASE", idUser);
         dataUser.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
